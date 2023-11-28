@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\tutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\glad.c">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B829EA35-80F8-39E7-A501-11E01E45A0F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7E5E3B7A-195E-3D90-BFDE-BE208B7232A0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
