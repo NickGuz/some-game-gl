@@ -1,8 +1,10 @@
 #include "Game.h"
 #include "SpriteRenderer.h"
+#include "Camera2D.h"
 
 SpriteRenderer* renderer;
 CharacterObject* player;
+Camera2D* camera;
 
 Game::Game(unsigned int width, unsigned int height)
 	: state(GAME_ACTIVE), keys(), width(width), height(height)
@@ -16,6 +18,8 @@ Game::~Game() {
 }
 
 void Game::init() {
+    // init camera
+    camera = new Camera2D();
 	// load shaders
 	ResourceManager::load_shader("../shaders/new_shader.vert", "../shaders/new_shader.frag", nullptr, "sprite");
 
@@ -23,7 +27,8 @@ void Game::init() {
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
 		static_cast<float>(this->height), 0.0f, -1.0f, 1.0f);
 	ResourceManager::get_shader("sprite").use().setInt("image", 0);
-	ResourceManager::get_shader("sprite").setMat4("projection", projection);
+    ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
+	ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
 
 	// set render-specific controls
 	renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
@@ -57,6 +62,13 @@ void Game::init() {
 void Game::update(float deltaT) {
 	// update objects
 	player->move(deltaT, width, height);
+    //camera->update(deltaT);
+
+    // update shader (camera) position
+    // don't know if this is right
+    ResourceManager::get_shader("sprite").use();
+    ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
+    ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
 
 	// check for collisions
 	do_collisions();
@@ -90,21 +102,25 @@ void Game::processInput(float deltaT) {
 			if (player->position.x >= 0.0f) {
 				player->position.x -= velocity;
 			}
+            camera->ProcessKeyboard(C_LEFT, deltaT);
 		}
 		if (keys[GLFW_KEY_D]) {
 			if (player->position.x <= width - player->size.x) {
 				player->position.x += velocity;
 			}
+            camera->ProcessKeyboard(C_RIGHT, deltaT);
 		}
         if (keys[GLFW_KEY_W]) {
             if (player->position.y <= height - player->size.y) {
                 player->position.y -= velocity;
             }
+            camera->ProcessKeyboard(C_FORWARD, deltaT);
         }
         if (keys[GLFW_KEY_S]) {
             if (player->position.y >= 0.0f) {
                 player->position.y += velocity;
             }
+            camera->ProcessKeyboard(C_BACKWARD,  deltaT);
         }
 		if (keys[GLFW_KEY_SPACE]) {
 			// jump
