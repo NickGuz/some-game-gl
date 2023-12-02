@@ -5,7 +5,7 @@ void GameLevel::init(std::vector<std::vector<unsigned int>> tile_data, unsigned 
 	unsigned int height = tile_data.size();
 	unsigned int width = tile_data[0].size();
 	float unit_width = level_width / static_cast<float>(width);
-	float unit_height = level_height / height;
+	float unit_height = level_height / static_cast<float>(height / 2.0f) ;
 
 	// initialize level tiles based on tile_data
 	for (unsigned int y = 0; y < height; ++y) {

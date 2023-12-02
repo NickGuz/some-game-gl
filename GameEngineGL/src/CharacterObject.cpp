@@ -7,8 +7,8 @@ CharacterObject::CharacterObject(glm::vec2 pos, glm::vec2 size, glm::vec2 veloci
 	: GameObject(pos, size, sprite, glm::vec3(1.0f), velocity), jumping(false) {}
 
 glm::vec2 CharacterObject::move(float deltaT, unsigned int window_width, unsigned int window_height) {
-	if (jumping)
-		position.y -= velocity.y * deltaT;
+	//if (jumping)
+	position.y -= velocity.y * deltaT;
 
 	// check if outside window bounds; if so, reverse velocity and restore at correct position
 	if (position.x <= 0.0f) {
@@ -25,27 +25,27 @@ glm::vec2 CharacterObject::move(float deltaT, unsigned int window_width, unsigne
 		//velocity.y = -velocity.y;
 		velocity.y = 0.0f;
 		position.y = 0.0f;
-		jumping = false;  // for now we'll consider 'landing' ss just hitting the bottom of the screen
+		//jumping = false;  // for now we'll consider 'landing' ss just hitting the bottom of the screen
 	}
 
 	// bottom of the screen
 	if (position.y >= window_height - size.y) {
 		velocity.y = 0.0f;
 		position.y = window_height - size.y;
-		jumping = false;
+		//jumping = false;
 	}
 
 	// apply gravity
-	if (jumping) {
-		velocity.y -= 100.0f * deltaT;
-	}
+	//if (jumping) {
+	//velocity.y -= 500.0f * deltaT;
+	//}
 
 	return position;
 }
 
 void CharacterObject::jump(float deltaT) {
-	jumping = true;
-	velocity.y = 200.0f;
+	//jumping = true;
+	//velocity.y = 500.0f;
 
 	// do some logic
 

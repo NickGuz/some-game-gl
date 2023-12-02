@@ -1,128 +1,129 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\BallObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\CharacterObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Emitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Event.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Receiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\SpriteRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\main.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\tutorial.cpp">
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\tutorial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\BallObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\CharacterObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Emitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventType.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameEvent.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Receiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\SpriteRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Texture2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.h">
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\glad.c">
-      <Filter>Source Files</Filter>
-    </None>
+    <CustomBuild Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{B829EA35-80F8-39E7-A501-11E01E45A0F9}</UniqueIdentifier>
+      <UniqueIdentifier>{17B548AC-F640-3F42-81FC-9365558D4248}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{7E5E3B7A-195E-3D90-BFDE-BE208B7232A0}</UniqueIdentifier>
+      <UniqueIdentifier>{C0074CDD-EF68-323D-8F03-AD0F11E25045}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

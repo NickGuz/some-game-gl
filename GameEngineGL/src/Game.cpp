@@ -17,7 +17,7 @@ Game::~Game() {
 
 void Game::init() {
 	// load shaders
-	ResourceManager::load_shader("shaders/new_shader.vert", "shaders/new_shader.frag", nullptr, "sprite");
+	ResourceManager::load_shader("../shaders/new_shader.vert", "../shaders/new_shader.frag", nullptr, "sprite");
 
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
@@ -29,17 +29,17 @@ void Game::init() {
 	renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
 
 	// load textures
-	ResourceManager::load_texture("textures/background.jpg", false, "background");
-	ResourceManager::load_texture("textures/awesomeface.png", true, "face");
-	ResourceManager::load_texture("textures/block.png", false, "block");
-	ResourceManager::load_texture("textures/block_solid.png", false, "block_solid");
-	ResourceManager::load_texture("textures/paddle.png", true, "paddle");
+	ResourceManager::load_texture("../textures/background.jpg", false, "background");
+	ResourceManager::load_texture("../textures/awesomeface.png", true, "face");
+	ResourceManager::load_texture("../textures/block.png", false, "block");
+	ResourceManager::load_texture("../textures/block_solid.png", false, "block_solid");
+	ResourceManager::load_texture("../textures/paddle.png", true, "paddle");
 
 	// load levels
-	GameLevel one; one.load("levels/one.lvl", width, height / 2);
-	GameLevel two; two.load("levels/two.lvl", width, height / 2);
-	GameLevel three; three.load("levels/three.lvl", width, height / 2);
-	GameLevel four; four.load("levels/four.lvl", width, height / 2);
+	GameLevel one; one.load("../levels/one.lvl", width, height);
+	GameLevel two; two.load("../levels/two.lvl", width, height);
+	GameLevel three; three.load("../levels/three.lvl", width, height);
+	GameLevel four; four.load("../levels/four.lvl", width, height);
 	levels.push_back(one);
 	levels.push_back(two);
 	levels.push_back(three);
@@ -49,7 +49,7 @@ void Game::init() {
 	// init player
 	glm::vec2 player_pos = glm::vec2(
 		width / 2.0f - PLAYER_SIZE.x / 2.0f,
-		height - PLAYER_SIZE.y
+		height - PLAYER_SIZE.y * 2.0f
 	);
 	player = new CharacterObject(player_pos, glm::vec2(50.0f, 50.0f), glm::vec2(0.0f, 0.0f), ResourceManager::get_texture("face"));
 }
@@ -66,13 +66,13 @@ void Game::update(float deltaT) {
 
 void Game::reset_level() {
 	if (level == 0)
-		levels[0].load("levels/one.lvl", width, height / 2);
+		levels[0].load("../levels/one.lvl", width, height);
 	else if (level == 1)
-		levels[1].load("levels/two.lvl", width, height / 2);
+		levels[1].load("../levels/two.lvl", width, height);
 	else if (level == 2)
-		levels[2].load("levels/three.lvl", width, height / 2);
+		levels[2].load("../levels/three.lvl", width, height);
 	else if (level == 3)
-		levels[3].load("levels/four.lvl", width, height / 2);
+		levels[3].load("../levels/four.lvl", width, height);
 }
 
 void Game::reset_player() {
@@ -85,7 +85,7 @@ void Game::processInput(float deltaT) {
 	if (state == GAME_ACTIVE) {
 		float velocity = PLAYER_VELOCITY * deltaT;
 
-		// move playerboard
+		// move player
 		if (keys[GLFW_KEY_A]) {
 			if (player->position.x >= 0.0f) {
 				player->position.x -= velocity;
@@ -96,10 +96,20 @@ void Game::processInput(float deltaT) {
 				player->position.x += velocity;
 			}
 		}
+        if (keys[GLFW_KEY_W]) {
+            if (player->position.y <= height - player->size.y) {
+                player->position.y -= velocity;
+            }
+        }
+        if (keys[GLFW_KEY_S]) {
+            if (player->position.y >= 0.0f) {
+                player->position.y += velocity;
+            }
+        }
 		if (keys[GLFW_KEY_SPACE]) {
 			// jump
-			if (!player->jumping)
-				player->jump(deltaT);
+			//if (!player->jumping)
+			player->jump(deltaT);
 			//player->position.y -= velocity;
 		}
 	}
@@ -117,20 +127,6 @@ void Game::render() {
 		// draw player
 		player->draw(*renderer);
 	}
-}
-
-// AABB - AABB collision
-bool check_collision(GameObject& one, GameObject& two) {
-	// collision x-axis?
-	bool collision_x = one.position.x + one.size.x >= two.position.x &&
-		two.position.x + two.size.x >= one.position.x;
-
-	// collision y-axis?
-	bool collision_y = one.position.y + one.size.y >= two.position.y &&
-		two.position.y + two.size.y >= one.position.y;
-
-	// collision only if on both axes
-	return collision_x && collision_y;
 }
 
 Direction vector_direction(glm::vec2 target) {
@@ -154,8 +150,28 @@ Direction vector_direction(glm::vec2 target) {
 	return (Direction)best_match;
 }
 
+// AABB - AABB collision
+Collision check_collision(GameObject& one, GameObject& two) {
+	// collision x-axis?
+	bool collision_x = one.position.x + one.size.x >= two.position.x &&
+		two.position.x + two.size.x >= one.position.x;
+
+	// collision y-axis?
+	bool collision_y = one.position.y + one.size.y >= two.position.y &&
+		two.position.y + two.size.y >= one.position.y;
+
+	glm::vec2 newpos(two.position.x, two.position.y - two.size.y / 2.0f);
+	// difference vector between the 2 objects
+	//glm::vec2 diff = one.position - two.position;
+	glm::vec2 diff = one.position - newpos;
+
+	bool collided = collision_x && collision_y;
+	
+	return std::make_tuple(collided, vector_direction(diff), diff);
+}
+
 // AABB - Circle collision
-collision check_collision(BallObject& circle, GameObject& obj) {
+Collision check_collision(BallObject& circle, GameObject& obj) {
 	// get center point circle first
 	glm::vec2 center(circle.position + circle.radius);
 
@@ -165,7 +181,7 @@ collision check_collision(BallObject& circle, GameObject& obj) {
 		obj.position.x + aabb_half_extents.x,
 		obj.position.y + aabb_half_extents.y
 	);
-
+    
 	// get difference bector between both centers
 	glm::vec2 difference = center - aabb_center;
 	glm::vec2 clamped = glm::clamp(difference, -aabb_half_extents, aabb_half_extents);
@@ -186,6 +202,37 @@ collision check_collision(BallObject& circle, GameObject& obj) {
 void Game::do_collisions() {
 	for (GameObject& box : levels[level].bricks) {
 		if (!box.destroyed) {
+
+			// Collision collision = check_collision(*player, box);
+			// if (std::get<0>(collision)) {
+			// 	// collision resolution
+			// 	Direction dir = std::get<1>(collision);
+			// 	glm::vec2 diff_vec = std::get<2>(collision);
+
+			// 	// horizontal collision
+			// 	if (dir == LEFT || dir == RIGHT) {
+			// 		player->velocity.x = 0.0f;
+
+			// 		// relocate
+			// 		float penetration = (player->size.x / 2.0f) - std::abs(diff_vec.x);
+			// 		if (dir == LEFT)
+			// 			player->position.x += penetration;
+			// 		else
+			// 			player->position.x -= penetration;
+			// 	}
+			// 	else {  // vertical collision
+			// 		player->velocity.y = 0.0f;
+
+			// 		// relocate
+			// 		float penetration = (player->size.y / 2.0f) - std::abs(diff_vec.y);
+			// 		std::cout << "penetration: " << std::to_string(penetration) << std::endl;
+			// 		if (dir == UP)
+			// 			player->position.y -= penetration;
+			// 		else
+			// 			player->position.y += penetration;
+			// 	}
+			// }
+
 			//collision _collision = check_collision(*ball, box);
 			//if (std::get<0>(_collision)) {
 			//	// destroy block if not solid

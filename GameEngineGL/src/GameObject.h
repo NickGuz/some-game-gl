@@ -15,6 +15,7 @@ public:
 	float rotation;
 	bool is_solid;
 	bool destroyed;  // we likely don't need this
+	bool collidable;
 
 	// render state
 	Texture2D sprite;

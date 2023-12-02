@@ -1,0 +1,6 @@
+[submodule "GameEngineGL/GameEngineGL/glfw"]
+	path = GameEngineGL/GameEngineGL/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "GameEngineGL/glfw"]
+	path = GameEngineGL/glfw
+	url = git@github.com:glfw/glfw.git

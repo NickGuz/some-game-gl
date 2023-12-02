@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C39BC4BE-4F28-3DF0-AEA9-B7BBB8B9D305}</ProjectGuid>
+    <ProjectGuid>{76924DA2-DCB3-3E16-A7C9-D5DD01366F8A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GameEngineGL.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GameEngineGL</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GameEngineGL.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GameEngineGL</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GameEngineGL.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GameEngineGL</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GameEngineGL.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GameEngineGL</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -103,10 +103,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -114,13 +114,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw\src\Debug\glfw3.lib;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\lib\glfw3.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/Debug/GameEngineGL.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/Debug/GameEngineGL.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/Debug/GameEngineGL.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/Debug/GameEngineGL.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -146,10 +146,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -157,13 +157,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw\src\Release\glfw3.lib;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\lib\glfw3.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/Release/GameEngineGL.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/Release/GameEngineGL.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/Release/GameEngineGL.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/Release/GameEngineGL.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -172,7 +172,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -189,10 +189,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -200,13 +200,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw\src\MinSizeRel\glfw3.lib;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\lib\glfw3.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/MinSizeRel/GameEngineGL.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/MinSizeRel/GameEngineGL.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/MinSizeRel/GameEngineGL.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/MinSizeRel/GameEngineGL.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -231,10 +231,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -242,13 +242,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw\src\RelWithDebInfo\glfw3.lib;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\lib\glfw3.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/RelWithDebInfo/GameEngineGL.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/RelWithDebInfo/GameEngineGL.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/RelWithDebInfo/GameEngineGL.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/RelWithDebInfo/GameEngineGL.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -256,11 +256,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -268,12 +268,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -281,12 +281,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -294,12 +294,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL/GameEngineGL/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL -BC:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build --check-stamp-file C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -307,56 +307,60 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeCXXCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeRCCompiler.cmake;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\3.28.0-rc5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\BallObject.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Camera.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\CharacterObject.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Emitter.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Event.cpp" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventQueue.h" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\EventType.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Game.h" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameEvent.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameLevel.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\GameObject.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Input.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Receiver.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\ResourceManager.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Shader.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\SpriteRenderer.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\Texture2D.h" />
-    <None Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\glad.c">
-    </None>
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\main.cpp" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.cpp" />
-    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\stb_image.h" />
-    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\src\tutorial.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\BallObject.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Camera.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\CharacterObject.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Emitter.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Event.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventQueue.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Game.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameLevel.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameObject.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Input.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Receiver.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\ResourceManager.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Shader.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\SpriteRenderer.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Texture2D.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\glad.c" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\main.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\stb_image.cpp" />
+    <ClCompile Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\tutorial.cpp" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\BallObject.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Camera.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\CharacterObject.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Emitter.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventQueue.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\EventType.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Game.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameEvent.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameLevel.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\GameObject.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Input.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Receiver.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\ResourceManager.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Shader.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\SpriteRenderer.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\Texture2D.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\src\stb_image.h" />
+    <ClInclude Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include\glad\glad.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\niick\source\repos\GameEngineGL\GameEngineGL\build\ZERO_CHECK.vcxproj">
-      <Project>{BB6C9D81-8AD7-3509-8F7A-D2B62027F78F}</Project>
+    <ProjectReference Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\ZERO_CHECK.vcxproj">
+      <Project>{9C8399C0-B042-3E78-A49A-EE7A7BC2F180}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\build\glfw\src\glfw.vcxproj">
+      <Project>{9A13FDF1-AB1E-32BF-ACC7-DB01B397EDDC}</Project>
+      <Name>glfw</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

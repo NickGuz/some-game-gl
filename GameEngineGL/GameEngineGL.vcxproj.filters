@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{3404f7a8-61ad-499f-a10d-9e93f7c9a92a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{1fca28e4-8949-4fc0-a9b8-39dce94a5096}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BallObject.cpp">
@@ -147,6 +150,18 @@
     </None>
     <None Include="shaders\new_shader.frag">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="levels\four.lvl">
+      <Filter>Levels</Filter>
+    </None>
+    <None Include="levels\one.lvl">
+      <Filter>Levels</Filter>
+    </None>
+    <None Include="levels\three.lvl">
+      <Filter>Levels</Filter>
+    </None>
+    <None Include="levels\two.lvl">
+      <Filter>Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

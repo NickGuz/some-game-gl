@@ -59,6 +59,10 @@
     <ClInclude Include="src\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="levels\four.lvl" />
+    <None Include="levels\one.lvl" />
+    <None Include="levels\three.lvl" />
+    <None Include="levels\two.lvl" />
     <None Include="shaders\cube.frag" />
     <None Include="shaders\cube.vert" />
     <None Include="shaders\light.frag" />

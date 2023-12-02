@@ -13,7 +13,7 @@
 // Initial size of the player
 const glm::vec2 PLAYER_SIZE(60.0f, 60.0f);
 // Initial velocity of the player paddle
-const float PLAYER_VELOCITY(500.0f);
+const float PLAYER_VELOCITY(300.0f);
 
 // Initial velocity of the ball
 const glm::vec2 INITIAL_BALL_VELOCITY(100.0f, -350.0f);
@@ -33,7 +33,7 @@ enum Direction {
 	LEFT
 };
 
-typedef std::tuple<bool, Direction, glm::vec2> collision;
+typedef std::tuple<bool, Direction, glm::vec2> Collision;
 
 class Game
 {
@@ -58,6 +58,8 @@ public:
 	void render();
 
 	// collision
+    
+    // Check and handle all collision resolutions
 	void do_collisions();
 	//bool check_collision(GameObject& one, GameObject& two); // AABB - AABB collision
 	//bool check_collision(BallObject& circle, GameObject& aabb); // AABB - Circle collision
