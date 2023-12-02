@@ -1,3 +1,5 @@
+$originalDirectory = Get-Location
+
 cd build
 
 $currentDirectory = Get-Location
@@ -8,3 +10,5 @@ if ($currentDirectory -notmatch "build") {
 
 msbuild .\GameEngineGL.sln
 Debug\GameEngineGL.exe
+
+Set-Location $originalDirectory
