@@ -219,35 +219,35 @@ void Game::do_collisions() {
 	for (GameObject& box : levels[level].bricks) {
 		if (!box.destroyed) {
 
-			// Collision collision = check_collision(*player, box);
-			// if (std::get<0>(collision)) {
-			// 	// collision resolution
-			// 	Direction dir = std::get<1>(collision);
-			// 	glm::vec2 diff_vec = std::get<2>(collision);
+			Collision collision = check_collision(*player, box);
+			if (std::get<0>(collision)) {
+				// collision resolution
+				Direction dir = std::get<1>(collision);
+				glm::vec2 diff_vec = std::get<2>(collision);
 
-			// 	// horizontal collision
-			// 	if (dir == LEFT || dir == RIGHT) {
-			// 		player->velocity.x = 0.0f;
+				// horizontal collision
+				if (dir == LEFT || dir == RIGHT) {
+					player->velocity.x = 0.0f;
 
-			// 		// relocate
-			// 		float penetration = (player->size.x / 2.0f) - std::abs(diff_vec.x);
-			// 		if (dir == LEFT)
-			// 			player->position.x += penetration;
-			// 		else
-			// 			player->position.x -= penetration;
-			// 	}
-			// 	else {  // vertical collision
-			// 		player->velocity.y = 0.0f;
+					// relocate
+					float penetration = (player->size.x / 2.0f) - std::abs(diff_vec.x);
+					if (dir == LEFT)
+						player->position.x += penetration;
+					else
+						player->position.x -= penetration;
+				}
+				else {  // vertical collision
+					player->velocity.y = 0.0f;
 
-			// 		// relocate
-			// 		float penetration = (player->size.y / 2.0f) - std::abs(diff_vec.y);
-			// 		std::cout << "penetration: " << std::to_string(penetration) << std::endl;
-			// 		if (dir == UP)
-			// 			player->position.y -= penetration;
-			// 		else
-			// 			player->position.y += penetration;
-			// 	}
-			// }
+					// relocate
+					float penetration = (player->size.y / 2.0f) - std::abs(diff_vec.y);
+					std::cout << "penetration: " << std::to_string(penetration) << std::endl;
+					if (dir == UP)
+						player->position.y -= penetration;
+					else
+						player->position.y += penetration;
+				}
+			}
 
 			//collision _collision = check_collision(*ball, box);
 			//if (std::get<0>(_collision)) {
