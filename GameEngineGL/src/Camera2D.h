@@ -17,7 +17,7 @@ enum Camera_Movement {
 };
 
 // Default camera values
-const float SPEED = 100.0f;
+const float SPEED = 300.0f;
 const float SENSITIVITY = 0.1f;
 
 class Camera2D

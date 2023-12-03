@@ -21,7 +21,7 @@ void Game::init() {
     // init camera
     camera = new Camera2D();
 	// load shaders
-	ResourceManager::load_shader("../shaders/new_shader.vert", "../shaders/new_shader.frag", nullptr, "sprite");
+	ResourceManager::load_shader("../src/shaders/new_shader.vert", "../src/shaders/new_shader.frag", nullptr, "sprite");
 
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
