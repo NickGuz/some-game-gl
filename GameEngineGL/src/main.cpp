@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
 
 	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "SomeGame", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
+	game.window = window;
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------

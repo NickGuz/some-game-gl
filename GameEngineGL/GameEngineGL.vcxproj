@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\BallObject.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Camera2D.cpp" />
     <ClCompile Include="src\CharacterObject.cpp" />
     <ClCompile Include="src\Emitter.cpp" />
     <ClCompile Include="src\Event.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Receiver.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
@@ -37,12 +39,15 @@
     <ClCompile Include="src\SpriteRenderer.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />
+    <ClCompile Include="src\Trigger.cpp" />
     <ClCompile Include="src\tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BallObject.h" />
     <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\Camera2D.h" />
     <ClInclude Include="src\CharacterObject.h" />
+    <ClInclude Include="src\Directions.h" />
     <ClInclude Include="src\Emitter.h" />
     <ClInclude Include="src\EventQueue.h" />
     <ClInclude Include="src\EventType.h" />
@@ -51,12 +56,14 @@
     <ClInclude Include="src\GameLevel.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\Receiver.h" />
     <ClInclude Include="src\ResourceManager.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\SpriteRenderer.h" />
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\Texture2D.h" />
+    <ClInclude Include="src\Trigger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="levels\four.lvl" />

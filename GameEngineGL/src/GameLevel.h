@@ -3,19 +3,28 @@
 #include <iostream>
 #include <vector>
 
-#include "GameObject.h"
+#include "CharacterObject.h"
 #include "ResourceManager.h"
+#include "Trigger.h"
+#include "Emitter.h"
+#include "Receiver.h"
 
 class GameLevel
 {
 public:
 	// level state
 	std::vector<GameObject> bricks;
+	std::vector<Trigger> triggers;
+	const CharacterObject& player;  // this might be a bad way to do it
+	Receiver receiver;
+	Emitter emitter;
 
-	GameLevel() {}
+	GameLevel(const CharacterObject& player);
 
 	// loads level from file
 	void load(const char* file, unsigned int level_width, unsigned int level_height);
+
+	void update(float delta_time);
 
 	// render level
 	void draw(SpriteRenderer& renderer);
@@ -26,5 +35,6 @@ public:
 private:
 	// initialize level from tile data
 	void init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height);
+	bool completed;
 };
 

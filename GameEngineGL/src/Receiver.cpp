@@ -10,16 +10,16 @@ void Receiver::destroy() {
 }
 
 void Receiver::subscribe(std::string type) {
-	EventQueue::getInstance().subscribe(*this, type);
+	EventQueue::getInstance().subscribe(this, type);
 	q.clear();
 }
 
-void Receiver::receive(const GameEvent& event) {
+void Receiver::receive(GameEvent event) {
 	q.push_back(event);
 }
 
-const GameEvent& Receiver::getNextEvent() {
-	const GameEvent& e = q.front();
+const GameEvent Receiver::getNextEvent() {
+	const GameEvent e = q.front();
 	q.pop_front();
 	return e;
 }

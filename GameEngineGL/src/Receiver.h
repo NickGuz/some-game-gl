@@ -16,10 +16,10 @@ public:
 	void subscribe(std::string type);
 
 	// Adds an event to the queue of this receiver
-	void receive(const GameEvent& event);
+	void receive(GameEvent event);
 
 	// Retrieves the next event from the receiver's queue
-	const GameEvent& getNextEvent();
+	const GameEvent getNextEvent();
 
 	// Looks at the next event in the receiver's queue, but doesn't remove it from the queue
 	const GameEvent& peekNextEvent();

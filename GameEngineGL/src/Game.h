@@ -9,6 +9,8 @@
 #include "GameLevel.h"
 #include "CharacterObject.h"
 #include "BallObject.h"
+#include "Directions.h"
+#include "Receiver.h"
 
 // Initial size of the player
 const glm::vec2 PLAYER_SIZE(60.0f, 60.0f);
@@ -26,13 +28,6 @@ enum GameState {
 	GAME_WIN
 };
 
-enum Direction {
-	UP,
-	RIGHT,
-	DOWN,
-	LEFT
-};
-
 typedef std::tuple<bool, Direction, glm::vec2> Collision;
 
 class Game
@@ -44,6 +39,10 @@ public:
 	unsigned int width, height;
 	std::vector<GameLevel> levels;
 	unsigned int level;
+	Receiver receiver;
+
+	// keep a pointer to the window
+	GLFWwindow* window;
 	
 	// constructor/destructor
 	Game(unsigned int width, unsigned int height);
@@ -63,6 +62,8 @@ public:
 	void do_collisions();
 	//bool check_collision(GameObject& one, GameObject& two); // AABB - AABB collision
 	//bool check_collision(BallObject& circle, GameObject& aabb); // AABB - Circle collision
+
+    bool will_collide(const GameObject& object);
 
 	void reset_level();
 	void reset_player();

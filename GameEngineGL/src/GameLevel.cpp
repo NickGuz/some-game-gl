@@ -1,4 +1,8 @@
 #include "GameLevel.h"
+#include "logger.h"
+
+GameLevel::GameLevel(const CharacterObject& player) : player(player) {
+}
 
 void GameLevel::init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height) {
 	// calculate dimensions
@@ -36,6 +40,13 @@ void GameLevel::init(std::vector<std::vector<unsigned int>> tile_data, unsigned 
 			}
 		}
 	}
+
+	// create triggers
+	Trigger trig_level_end(glm::vec2(100.0f, 100.0f), glm::vec2(10.0f, 100.0f));
+	triggers.push_back(trig_level_end);
+
+	// subscribe to events
+	receiver.subscribe("LEVEL_END");
 }
 
 void GameLevel::load(const char* file, unsigned int level_width, unsigned int level_height) {
@@ -44,7 +55,7 @@ void GameLevel::load(const char* file, unsigned int level_width, unsigned int le
 
 	// load from file
 	unsigned int tile_code;
-	GameLevel level;
+	GameLevel level(player);
 	std::string line;
 	std::ifstream fstream(file);
 	std::vector<std::vector<unsigned int>> tile_data;
@@ -53,28 +64,53 @@ void GameLevel::load(const char* file, unsigned int level_width, unsigned int le
 			std::istringstream sstream(line);
 			std::vector<unsigned int> row;
 			
-			while (sstream >> tile_code)  // read each word separated by spaces
+			while (sstream >> tile_code) {  // read each word separated by spaces
 				row.push_back(tile_code);
+			}
 			tile_data.push_back(row);
 		}
 
-		if (tile_data.size() > 0)
+		if (tile_data.size() > 0) {
 			init(tile_data, level_width, level_height);
+		}
+	}
+}
+
+void GameLevel::update(float delta_time) {
+	// handle all events the receiver is subscribed to
+	while (receiver.hasNextEvent()) {
+		const GameEvent event = receiver.getNextEvent();
+
+		// pass this off to handler function probably, but for now just doing here...
+		if (event.type == "LEVEL_END") {
+			log_debug("HANDLING LEVEL_END EVENT");
+			completed = true;
+		}
+	}
+
+	//std::cout << "Player pos: " << std::to_string(player.position.x) << std::endl;
+	for (Trigger trigger : triggers) {
+		if (trigger.aabb_collides(player)) {
+
+			// kind of a stupid roundabout way of doing this.... but i was initially intended to handle the event elsewhere
+			emitter.fireEvent("LEVEL_END");
+		}
 	}
 }
 
 void GameLevel::draw(SpriteRenderer& renderer) {
 	for (GameObject& tile : bricks) {
-		if (!tile.destroyed)
+		if (!tile.destroyed) {
 			tile.draw(renderer);
+		}
+	}
+
+	for (Trigger trigger : triggers) {
+		//trigger.draw(renderer);
 	}
 }
 
 bool GameLevel::is_completed() {
-	for (GameObject& tile : bricks) {
-		if (!tile.is_solid && !tile.destroyed)
-			return false;
-	}
-
-	return true;
+	// maybe move trigger checking code in here?
+	return completed;
 }

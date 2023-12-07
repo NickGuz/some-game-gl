@@ -24,12 +24,12 @@ public:
 	}
 
 	// Checks the type of the Event
-	bool isType(std::string _type) {
+	bool is_type(std::string _type) const {
 		return type == _type;
 	}
 
 	// Returns this Event as a string
-	std::string toString() {
+	std::string to_string() {
 		return type + ": @" + std::to_string(time);
 	}
 
