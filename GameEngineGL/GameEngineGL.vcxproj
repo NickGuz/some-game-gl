@@ -33,6 +33,7 @@
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\othermain.cpp" />
     <ClCompile Include="src\Receiver.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\Shader.cpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="src\Texture2D.cpp" />
     <ClCompile Include="src\Trigger.cpp" />
     <ClCompile Include="src\tutorial.cpp" />
+    <ClCompile Include="src\VulkanWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BallObject.h" />
@@ -64,6 +66,7 @@
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\Texture2D.h" />
     <ClInclude Include="src\Trigger.h" />
+    <ClInclude Include="src\VulkanWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="levels\four.lvl" />
@@ -140,7 +143,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\niick\Documents\GameDev\opengl\lib</LibraryPath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\niick\Documents\GameDev\opengl\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\niick\Documents\GameDev\opengl\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngine\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -177,11 +180,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.268.0\Include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\VulkanSDK\1.3.268.0\Lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

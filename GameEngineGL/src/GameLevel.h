@@ -1,5 +1,8 @@
 #pragma once
 
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
 #include <iostream>
 #include <vector>
 
@@ -34,7 +37,8 @@ public:
 
 private:
 	// initialize level from tile data
-	void init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height);
+	//void init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height);
+    void init(const rapidjson::Value& background_layer, const rapidjson::Value& collidable_layer, unsigned int level_width, unsigned int level_height);
 	bool completed;
 };
 

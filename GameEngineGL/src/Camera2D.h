@@ -6,6 +6,7 @@
 
 #include <vector>
 
+#include "CharacterObject.h"
 #include "Receiver.h"
 #include "Directions.h"
 
@@ -31,6 +32,8 @@ public:
 	float MovementSpeed;
 	float MouseSensitivity;
 	float Zoom;
+
+    const CharacterObject* Player;
 
 	// constructor with vectors
 	Camera2D(

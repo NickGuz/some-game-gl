@@ -78,5 +78,8 @@ void Camera2D::update(float deltaT) {
 	while (receiver.hasNextEvent()) {
 		std::cout << "HAS EVENT" << std::endl;
 	}
+
+    Position.x = Player->position.x - (ScreenWidth / 2.0f) + (Player->size.x / 2.0f);
+    Position.y = Player->position.y - (ScreenHeight / 2.0f) + (Player->size.y / 2.0f);
 }
 

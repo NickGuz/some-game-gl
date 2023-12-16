@@ -47,16 +47,17 @@ void Game::init() {
 		height - PLAYER_SIZE.y * 2.0f
 	);
 	player = new CharacterObject(player_pos, glm::vec2(50.0f, 50.0f), glm::vec2(0.0f, 0.0f), ResourceManager::get_texture("face"));
+    camera->Player = player;
 
 	// load levels
-	GameLevel one(*player); one.load("levels/one.lvl", width, height);
-	GameLevel two(*player); two.load("levels/two.lvl", width, height);
-	GameLevel three(*player); three.load("levels/three.lvl", width, height);
-	GameLevel four(*player); four.load("levels/four.lvl", width, height);
+	GameLevel one(*player); one.load("levels/lvl1.json", width, height);
+	/* GameLevel two(*player); two.load("levels/two.lvl", width, height); */
+	/* GameLevel three(*player); three.load("levels/three.lvl", width, height); */
+	/* GameLevel four(*player); four.load("levels/four.lvl", width, height); */
 	levels.push_back(one);
-	levels.push_back(two);
-	levels.push_back(three);
-	levels.push_back(four);
+	/* levels.push_back(two); */
+	/* levels.push_back(three); */
+	/* levels.push_back(four); */
 	level = 0;
 
 	// create receiver for events
@@ -78,7 +79,7 @@ void Game::update(float deltaT) {
 	// update objects
     // TODO we probably want to check for collisions BEFORE moving the player
 	player->move(deltaT, width, height);
-    //camera->update(deltaT);
+    camera->update(deltaT);
 
 	// update the level? 
 	levels[level].update(deltaT);
@@ -100,13 +101,13 @@ void Game::update(float deltaT) {
 
 void Game::reset_level() {
 	if (level == 0)
-		levels[0].load("levels/one.lvl", width, height);
-	else if (level == 1)
-		levels[1].load("levels/two.lvl", width, height);
-	else if (level == 2)
-		levels[2].load("levels/three.lvl", width, height);
-	else if (level == 3)
-		levels[3].load("levels/four.lvl", width, height);
+		levels[0].load("levels/lvl1.json", width, height);
+	/* else if (level == 1) */
+	/* 	levels[1].load("levels/two.lvl", width, height); */
+	/* else if (level == 2) */
+	/* 	levels[2].load("levels/three.lvl", width, height); */
+	/* else if (level == 3) */
+	/* 	levels[3].load("levels/four.lvl", width, height); */
 }
 
 void Game::reset_player() {
@@ -124,25 +125,25 @@ void Game::processInput(float deltaT) {
 			//if (player->position.x >= 0.0f) {
 				player->position.x -= velocity;
 			//}
-            camera->ProcessKeyboard(C_LEFT, deltaT);
+            //camera->ProcessKeyboard(C_LEFT, deltaT);
 		}
 		if (keys[GLFW_KEY_D]) {
 			//if (player->position.x <= width - player->size.x) {
 				player->position.x += velocity;
 			//}
-            camera->ProcessKeyboard(C_RIGHT, deltaT);
+            //camera->ProcessKeyboard(C_RIGHT, deltaT);
 		}
         if (keys[GLFW_KEY_W]) {
             //if (player->position.y <= height - player->size.y) {
                 player->position.y -= velocity;
             //}
-            camera->ProcessKeyboard(C_FORWARD, deltaT);
+            //camera->ProcessKeyboard(C_FORWARD, deltaT);
         }
         if (keys[GLFW_KEY_S]) {
             //if (player->position.y >= 0.0f) {
                 player->position.y += velocity;
             //}
-			camera->ProcessKeyboard(C_BACKWARD,  deltaT);
+			//camera->ProcessKeyboard(C_BACKWARD,  deltaT);
         }
 		if (keys[GLFW_KEY_SPACE]) {
 			// jump
@@ -244,7 +245,7 @@ Collision check_collision(BallObject& circle, GameObject& obj) {
 
 void Game::do_collisions() {
 	for (GameObject& box : levels[level].bricks) {
-		if (!box.destroyed) {
+		if (!box.destroyed && box.collidable) {
 
 			Collision collision = check_collision(*player, box);
 			if (std::get<0>(collision)) {

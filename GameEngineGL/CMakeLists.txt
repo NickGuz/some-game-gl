@@ -20,8 +20,14 @@ file(GLOB_RECURSE SRCS "src/*.cpp" "src/*.c")
 # add headers
 file(GLOB_RECURSE HDRS "src/*.h" "src/*.hpp")
 
+# add vulkan libs
+# file(GLOB_RECURSE VLK "lib/vulkan/*")
+
 # build a executable target
 add_executable(${PROJECT_NAME} ${SRCS} ${HDRS} "src/glad.c" "include/glad/glad.h")
+
+#find_package(Vulkan REQUIRED)
+# target_link_libraries(${PROJECT_NAME} ${Vulkan_LIBRARIES})
 
 # add include path
 # include_directories("include")
@@ -36,11 +42,16 @@ add_executable(${PROJECT_NAME} ${SRCS} ${HDRS} "src/glad.c" "include/glad/glad.h
 #     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/simd"
 #     "${CMAKE_CURRENT_SOURCE_DIR}/include/KHR"
 # )
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(${PROJECT_NAME} PUBLIC 
+    "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # link lib path
-# link_directories("lib")
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" opengl32.lib)
+# link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/vulkan")
+target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
+    #"${Vulkan_LIBRARIES}"
+    # "${VLK}"
+    opengl32.lib)
 
 # set c++ standard
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
