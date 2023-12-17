@@ -22,6 +22,8 @@ const glm::vec2 INITIAL_BALL_VELOCITY(100.0f, -350.0f);
 // Radius of the ball object
 const float BALL_RADIUS = 12.5f;
 
+const float BOX_SPEED = 120.0f;
+
 enum GameState {
 	GAME_ACTIVE,
 	GAME_MENU,

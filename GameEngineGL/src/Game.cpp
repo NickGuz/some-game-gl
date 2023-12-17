@@ -127,34 +127,19 @@ void Game::processInput(float deltaT) {
 
 		// move player
 		if (keys[GLFW_KEY_A]) {
-			//if (player->position.x >= 0.0f) {
-				player->position.x -= velocity;
-			//}
-            //camera->ProcessKeyboard(C_LEFT, deltaT);
+            player->position.x -= velocity;
 		}
 		if (keys[GLFW_KEY_D]) {
-			//if (player->position.x <= width - player->size.x) {
-				player->position.x += velocity;
-			//}
-            //camera->ProcessKeyboard(C_RIGHT, deltaT);
+            player->position.x += velocity;
 		}
         if (keys[GLFW_KEY_W]) {
-            //if (player->position.y <= height - player->size.y) {
-                player->position.y -= velocity;
-            //}
-            //camera->ProcessKeyboard(C_FORWARD, deltaT);
+            player->position.y -= velocity;
         }
         if (keys[GLFW_KEY_S]) {
-            //if (player->position.y >= 0.0f) {
-                player->position.y += velocity;
-            //}
-			//camera->ProcessKeyboard(C_BACKWARD,  deltaT);
+            player->position.y += velocity;
         }
 		if (keys[GLFW_KEY_SPACE]) {
-			// jump
-			//if (!player->jumping)
 			player->jump(deltaT);
-			//player->position.y -= velocity;
 		}
 	}
 }
@@ -266,14 +251,8 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.x + box.size.x) / 2.0f - std::abs(diff_vec.x);
 					if (dir == LEFT) {
-                        if (box.movable) {
-                            box.velocity.x -= 100.0f;
-                        }
 						player->position.x += penetration;
                     } else {
-                        if (box.movable) {
-                            box.velocity.x += 100.0f;
-                        }
 						player->position.x -= penetration;
                     }
 				}
@@ -283,14 +262,8 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.y + box.size.y) / 2.0f - std::abs(diff_vec.y);
 					if (dir == UP) {
-                        if (box.movable) {
-                            box.velocity.y -= 100.0f;
-                        }
 						player->position.y -= penetration;
                     } else {
-                        if (box.movable) {
-                            box.velocity.y += 100.0f;
-                        }
 						player->position.y += penetration;
                     }
 				}
@@ -313,10 +286,10 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.x + box->size.x) / 2.0f - std::abs(diff_vec.x);
 					if (dir == LEFT) {
-                        box->velocity.x -= 100.0f;
+                        box->velocity.x -= BOX_SPEED;
 						player->position.x += penetration;
                     } else {
-                        box->velocity.x += 100.0f;
+                        box->velocity.x += BOX_SPEED;
 						player->position.x -= penetration;
                     }
 				}
@@ -326,10 +299,10 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.y + box->size.y) / 2.0f - std::abs(diff_vec.y);
 					if (dir == UP) {
-                        box->velocity.y -= 100.0f;
+                        box->velocity.y -= BOX_SPEED;
 						player->position.y -= penetration;
                     } else {
-                        box->velocity.y += 100.0f;
+                        box->velocity.y += BOX_SPEED;
 						player->position.y += penetration;
                     }
 				}
