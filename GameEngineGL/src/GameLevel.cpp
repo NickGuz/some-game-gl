@@ -4,24 +4,33 @@
 GameLevel::GameLevel(const CharacterObject& player) : player(player), completed(false) {
 }
 
-void GameLevel::init(const rapidjson::Value& background_layer, const rapidjson::Value& collidable_layer, unsigned int level_width, unsigned int level_height) {
+void GameLevel::init(const rapidjson::Value& background_layer, 
+                     const rapidjson::Value& collidable_layer, 
+                     const rapidjson::Value& movable_layer,
+                     const rapidjson::Value& finish_layer,
+                     unsigned int level_width, 
+                     unsigned int level_height) {
     // calculate dimensions
     unsigned int height = background_layer["height"].GetInt();
     unsigned int width = background_layer["width"].GetInt();
-    float unit_width = level_width / static_cast<float>(width);
-    float unit_height = level_height / static_cast<float>(height);
+    //float unit_width = level_width / static_cast<float>(width);
+    //float unit_height = level_height / static_cast<float>(height);
+    float unit_width = 45.0f;
+    float unit_height = unit_width;
+    std::cout << "unit_width: " << std::to_string(unit_width) << std::endl;
+    std::cout << "unit_height: " << std::to_string(unit_height) << std::endl;
 
-    // initialize level tiles based on layer data
+    // initialize background tiles
     int i = 0;
     int x = 0;
     int y = 0;
     for (auto& _n : background_layer["data"].GetArray()) {
         int n = _n.GetInt();
         if (n > 1) {
-            glm::vec3 color = glm::vec3(1.0f);
+            glm::vec3 color = glm::vec3(0.7f);
             glm::vec2 pos(unit_width * x, unit_height * y);
             glm::vec2 size(unit_width, unit_height);
-            bricks.push_back(GameObject(pos, size, ResourceManager::get_texture("block"), false, color));
+            bricks.push_back(GameObject(pos, size, ResourceManager::get_texture("pb"), false, false, color));
         }
 
         i++;
@@ -31,47 +40,74 @@ void GameLevel::init(const rapidjson::Value& background_layer, const rapidjson::
         }
     }
 
-    for (auto& n : collidable_layer["data"].GetArray()) {
+    // initialize collidable tiles
+    i = 0;
+    x = 0;
+    y = 0;
+    for (auto& _n : collidable_layer["data"].GetArray()) {
+        int n = _n.GetInt();
+        if (n > 1) {
+            glm::vec3 color = glm::vec3(0.0f);
+            glm::vec2 pos(unit_width * x, unit_height * y);
+            glm::vec2 size(unit_width, unit_height);
+            GameObject brick = GameObject(pos, size, ResourceManager::get_texture("pb"), true, false, color);
+            bricks.push_back(brick);
+            collidable_bricks.push_back(brick);
+        }
 
+        i++;
+        x = i % width;
+        if (x == 0) {
+            y++;
+        }
     }
+
+    // initialize movable tiles
+    i = 0;
+    x = 0;
+    y = 0;
+    for (auto& _n : movable_layer["data"].GetArray()) {
+        int n = _n.GetInt();
+        if (n > 1) {
+            glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f);
+            glm::vec2 pos(unit_width * x, unit_height * y);
+            glm::vec2 size(unit_width, unit_height);
+            /* GameObject box = GameObject(pos, size, ResourceManager::get_texture("pb"), true, true, color); */
+            /* bricks.push_back(box); */
+            GameObject* box_ptr = new GameObject(pos, size, ResourceManager::get_texture("pb"), true, true, color);
+            movable_bricks.push_back(box_ptr);
+        }
+
+        i++;
+        x = i % width;
+        if (x == 0) {
+            y++;
+        }
+    }
+
+    // initialize finish tiles
+    i = 0;
+    x = 0;
+    y = 0;
+    for (auto& _n : finish_layer["data"].GetArray()) {
+        int n = _n.GetInt();
+        if (n > 1) {
+            glm::vec3 color = glm::vec3(0.0f, 0.0f, 1.0f);
+            glm::vec2 pos(unit_width * x, unit_height * y);
+            glm::vec2 size(unit_width, unit_height);
+            bricks.push_back(GameObject(pos, size, ResourceManager::get_texture("pb"), false, false, color));
+            triggers.push_back(Trigger(pos, size));
+        }
+
+        i++;
+        x = i % width;
+        if (x == 0) {
+            y++;
+        }
+    }
+
+    receiver.subscribe("LEVEL_END");
 }
-
-/* void GameLevel::init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height) { */
-/* 	// calculate dimensions */
-/* 	unsigned int height = tile_data.size(); */
-/* 	unsigned int width = tile_data[0].size(); */
-/* 	float unit_width = level_width / static_cast<float>(width); */
-/* 	float unit_height = level_height / static_cast<float>(height / 2.0f) ; */
-
-/* 	// initialize level tiles based on tile_data */
-/* 	for (unsigned int y = 0; y < height; ++y) { */
-/* 		for (unsigned int x = 0; x < width; ++x) { */
-/* 			// check block type from level data (2d level array) */
-/* 			if (tile_data[y][x] == 1) {  // solid */
-/* 				glm::vec2 pos(unit_width * x, unit_height * y); */
-/* 				glm::vec2 size(unit_width, unit_height); */
-/* 				GameObject obj(pos, size, ResourceManager::get_texture("block_solid"), */
-/* 					glm::vec3(0.8f, 0.8f, 0.7f)); */
-/* 				obj.is_solid = true; */
-/* 				bricks.push_back(obj); */
-/* 			} */
-/* 			else if (tile_data[y][x] > 1) { */
-/* 				glm::vec3 color = glm::vec3(1.0f); // original: white */
-/* 				if (tile_data[y][x] == 2) */
-/* 					color = glm::vec3(0.2f, 0.6f, 1.0f); */
-/* 				else if (tile_data[y][x] == 3) */
-/* 					color = glm::vec3(0.0f, 0.7f, 0.0f); */
-/* 				else if (tile_data[y][x] == 4) */
-/* 					color = glm::vec3(0.8f, 0.8f, 0.4f); */
-/* 				else if (tile_data[y][x] == 5) */
-/* 					color = glm::vec3(1.0f, 0.5f, 0.0f); */
-
-/* 				glm::vec2 pos(unit_width * x, unit_height * y); */
-/* 				glm::vec2 size(unit_width, unit_height); */
-/* 				bricks.push_back(GameObject(pos, size, ResourceManager::get_texture("block"), color)); */
-/* 			} */
-/* 		} */
-/* 	} */
 
 // load json file now instead
 void GameLevel::load(const char* file, unsigned int level_width, unsigned int level_height) {
@@ -89,60 +125,16 @@ void GameLevel::load(const char* file, unsigned int level_width, unsigned int le
     const rapidjson::Value& layers = document["layers"];
     const rapidjson::Value& background_layer = layers[0]; // not very safe but whatever
     const rapidjson::Value& collision_layer = layers[1];
+    const rapidjson::Value& movable_layer = layers[2];
+    const rapidjson::Value& finish_layer = layers[3];
 
     std::cout << background_layer["class"].GetString() << std::endl;
     std::cout << collision_layer["class"].GetString() << std::endl;
+    std::cout << movable_layer["class"].GetString() << std::endl;
+    std::cout << finish_layer["class"].GetString() << std::endl;
 
-    // start processing
-    // probably don't want to do this - just pass the layer to another init function
-    // so we have access to width and things
-    /* rapidjson::Value::ConstArray background_data = background_layer["data"].GetArray(); */
-    /* rapidjson::Value::ConstArray collidable_data = collision_layer["data"].GetArray(); */
-    /* for (auto& n : background_data) { */
-
-    /* } */
-    /* for (auto& n : collidable_data) { */
-
-    /* } */
-
-    init(background_layer, collision_layer, level_width, level_height);
+    init(background_layer, collision_layer, movable_layer, finish_layer, level_width, level_height);
 }
-
-/* 	// create triggers */
-/* 	Trigger trig_level_end(glm::vec2(100.0f, 100.0f), glm::vec2(10.0f, 100.0f)); */
-/* 	triggers.push_back(trig_level_end); */
-
-/* 	// subscribe to events */
-/* 	receiver.subscribe("LEVEL_END"); */
-/* } */
-
-/* void GameLevel::load(const char* file, unsigned int level_width, unsigned int level_height) { */
-/* 	// clear old data */
-/* 	bricks.clear(); */
-
-/* 	// load from file */
-/* 	unsigned int tile_code; */
-/* 	GameLevel level(player); */
-/* 	std::string line; */
-/* 	std::ifstream fstream(file); */
-/* 	std::vector<std::vector<unsigned int>> tile_data; */
-/* 	if (fstream) { */
-/* 		while (std::getline(fstream, line)) { // read each line from level file */
-/* 			std::istringstream sstream(line); */
-/* 			std::vector<unsigned int> row; */
-			
-/* 			while (sstream >> tile_code) {  // read each word separated by spaces */
-/* 				row.push_back(tile_code); */
-/* 			} */
-/* 			tile_data.push_back(row); */
-/* 		} */
-
-/* 		if (tile_data.size() > 0) { */
-/* 			init(tile_data, level_width, level_height); */
-/* 		} */
-/* 	} */
-/* } */
-
 
 void GameLevel::update(float delta_time) {
 	// handle all events the receiver is subscribed to
@@ -156,22 +148,36 @@ void GameLevel::update(float delta_time) {
 		}
 	}
 
-	//std::cout << "Player pos: " << std::to_string(player.position.x) << std::endl;
-	for (Trigger trigger : triggers) {
-		if (trigger.aabb_collides(player)) {
+    // update boxes
+    /* for (GameObject& box : bricks) { */
+    /*     box.position.x += box.velocity.x * delta_time; */
+    /*     box.position.y -= box.velocity.y * delta_time; */
+    /* } */
 
-			// kind of a stupid roundabout way of doing this.... but i was initially intended to handle the event elsewhere
-			emitter.fireEvent("LEVEL_END");
-		}
+    for (GameObject* box : movable_bricks) {
+        box->position.x += box->velocity.x * delta_time;
+        box->position.y -= box->velocity.y * delta_time;
+    }
+
+	for (Trigger trigger : triggers) {
+        for (const GameObject* box: movable_bricks) {
+            if (trigger.aabb_collides(*box)) {
+                // kind of a stupid roundabout way of doing this.... but i was initially intended to handle the event elsewhere
+                emitter.fireEvent("LEVEL_END");
+                std::cout << "LEVEL END" << std::endl;
+            }
+        }
 	}
 }
 
 void GameLevel::draw(SpriteRenderer& renderer) {
 	for (GameObject& tile : bricks) {
-		if (!tile.destroyed) {
-			tile.draw(renderer);
-		}
+        tile.draw(renderer);
 	}
+
+    for (GameObject* tile : movable_bricks) {
+        tile->draw(renderer);
+    }
 
 	for (Trigger trigger : triggers) {
 		//trigger.draw(renderer);

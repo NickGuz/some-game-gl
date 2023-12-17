@@ -78,6 +78,18 @@ void Shader::setVec3(const std::string& name, const glm::vec3& value, bool use_s
 	glUniform3fv(glGetUniformLocation(id, name.c_str()), 1, glm::value_ptr(value));
 }
 
+void Shader::setVec2f(const std::string& name, float x, float y, bool use_shader) {
+    if (use_shader)
+        this->use();
+    glUniform2f(glGetUniformLocation(id, name.c_str()), x, y);
+}
+
+void Shader::setVec2fv(const std::string& name, const glm::vec2& value, bool use_shader) {
+    if (use_shader)
+        this->use();
+    glUniform2fv(glGetUniformLocation(id, name.c_str()), 1, glm::value_ptr(value));
+}
+
 void Shader::setMat4(const std::string& name, const glm::mat4& mat, bool use_shader) {
 	if (use_shader)
 		this->use();

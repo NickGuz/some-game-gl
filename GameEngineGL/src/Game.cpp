@@ -36,10 +36,14 @@ void Game::init() {
 
 	// load textures
 	ResourceManager::load_texture("textures/background.jpg", false, "background");
-	ResourceManager::load_texture("textures/awesomeface.png", true, "face");
+	/* ResourceManager::load_texture("textures/awesomeface.png", true, "face"); */
+    ResourceManager::load_texture("textures/face.png", true, "face");
 	ResourceManager::load_texture("textures/block.png", false, "block");
 	ResourceManager::load_texture("textures/block_solid.png", false, "block_solid");
 	ResourceManager::load_texture("textures/paddle.png", true, "paddle");
+	ResourceManager::load_texture("textures/container.jpg", false, "desert");
+    ResourceManager::load_texture("textures/white_square.png", false, "pb");
+    ResourceManager::load_texture("textures/empty-block.png", false, "eb");
 
 	// init player
 	glm::vec2 player_pos = glm::vec2(
@@ -84,6 +88,7 @@ void Game::update(float deltaT) {
 	// update the level? 
 	levels[level].update(deltaT);
 	if (levels[level].is_completed()) {
+        std::cout << "Level completed" << std::endl;
 		glfwSetWindowShouldClose(window, true);
 	}
 
@@ -245,8 +250,9 @@ Collision check_collision(BallObject& circle, GameObject& obj) {
 
 void Game::do_collisions() {
 	for (GameObject& box : levels[level].bricks) {
-		if (!box.destroyed && box.collidable) {
+		if (box.collidable) {
 
+            // check box-player collisions
 			Collision collision = check_collision(*player, box);
 			if (std::get<0>(collision)) {
 				// collision resolution
@@ -260,8 +266,14 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.x + box.size.x) / 2.0f - std::abs(diff_vec.x);
 					if (dir == LEFT) {
+                        if (box.movable) {
+                            box.velocity.x -= 100.0f;
+                        }
 						player->position.x += penetration;
                     } else {
+                        if (box.movable) {
+                            box.velocity.x += 100.0f;
+                        }
 						player->position.x -= penetration;
                     }
 				}
@@ -271,12 +283,82 @@ void Game::do_collisions() {
 					// relocate
 					float penetration = (player->size.y + box.size.y) / 2.0f - std::abs(diff_vec.y);
 					if (dir == UP) {
+                        if (box.movable) {
+                            box.velocity.y -= 100.0f;
+                        }
 						player->position.y -= penetration;
                     } else {
+                        if (box.movable) {
+                            box.velocity.y += 100.0f;
+                        }
 						player->position.y += penetration;
                     }
 				}
 			}
+        }
+    }
+
+    for (GameObject* box : levels[level].movable_bricks) {
+            // check box-player collisions
+			Collision collision = check_collision(*player, *box);
+			if (std::get<0>(collision)) {
+				// collision resolution
+				Direction dir = std::get<1>(collision);
+				glm::vec2 diff_vec = std::get<2>(collision);
+
+				// horizontal collision
+				if (dir == LEFT || dir == RIGHT) {
+					player->velocity.x = 0.0f;
+
+					// relocate
+					float penetration = (player->size.x + box->size.x) / 2.0f - std::abs(diff_vec.x);
+					if (dir == LEFT) {
+                        box->velocity.x -= 100.0f;
+						player->position.x += penetration;
+                    } else {
+                        box->velocity.x += 100.0f;
+						player->position.x -= penetration;
+                    }
+				}
+				else {  // vertical collision
+					player->velocity.y = 0.0f;
+
+					// relocate
+					float penetration = (player->size.y + box->size.y) / 2.0f - std::abs(diff_vec.y);
+					if (dir == UP) {
+                        box->velocity.y -= 100.0f;
+						player->position.y -= penetration;
+                    } else {
+                        box->velocity.y += 100.0f;
+						player->position.y += penetration;
+                    }
+				}
+			}
+
+        // check movable-collidable(not movable) collisions
+        for (GameObject& collidable : levels[level].collidable_bricks) {
+            Collision collision = check_collision(*box, collidable);
+            if (std::get<0>(collision)) {
+                Direction dir = std::get<1>(collision);
+                glm::vec2 diff_vec = std::get<2>(collision);
+
+                // horizontal collision
+                if (dir == LEFT || dir == RIGHT) {
+                    box->velocity.x = 0.0f;
+                    
+                    // relocate
+                    float penetration = (box->size.x + collidable.size.x) / 2.0f - std::abs(diff_vec.x);
+                    penetration *= dir == LEFT ? 1 : -1;
+                    box->position.x += penetration;
+                } else {
+                    box->velocity.y = 0.0f;
+
+                    // relocate
+                    float penetration = (box->size.y + collidable.size.y) / 2.0f - std::abs(diff_vec.y);
+                    penetration *= dir == UP ? 1 : -1;
+                    box->position.y -= penetration;
+                }
+            }
         }
     }
 }

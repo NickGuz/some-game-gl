@@ -28,6 +28,8 @@ public:
 	void setFloat(const std::string& name, float value, bool use_shader = false);
 	void setVec3(const std::string& name, float x, float y, float z, bool use_shader = false);
 	void setVec3(const std::string& name, const glm::vec3& value, bool use_shader = false);
+    void setVec2f(const std::string& name, float x, float y, bool use_shader = false);
+    void setVec2fv(const std::string& name, const glm::vec2& value, bool use_shader = false);
 	void setMat4(const std::string& name, const glm::mat4& value, bool use_shader = false);
 
 private:

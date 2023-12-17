@@ -17,6 +17,8 @@ class GameLevel
 public:
 	// level state
 	std::vector<GameObject> bricks;
+    std::vector<GameObject> collidable_bricks;
+    std::vector<GameObject*> movable_bricks;
 	std::vector<Trigger> triggers;
 	const CharacterObject& player;  // this might be a bad way to do it
 	Receiver receiver;
@@ -38,7 +40,12 @@ public:
 private:
 	// initialize level from tile data
 	//void init(std::vector<std::vector<unsigned int>> tile_data, unsigned int level_width, unsigned int level_height);
-    void init(const rapidjson::Value& background_layer, const rapidjson::Value& collidable_layer, unsigned int level_width, unsigned int level_height);
+    void init(const rapidjson::Value& background_layer, 
+              const rapidjson::Value& collidable_layer, 
+              const rapidjson::Value& movable_layer,
+              const rapidjson::Value& finish_layer,
+              unsigned int level_width, 
+              unsigned int level_height);
 	bool completed;
 };
 

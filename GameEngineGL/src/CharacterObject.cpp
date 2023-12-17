@@ -4,7 +4,7 @@ CharacterObject::CharacterObject()
 	: GameObject(), jumping(false) {}
 
 CharacterObject::CharacterObject(glm::vec2 pos, glm::vec2 size, glm::vec2 velocity, Texture2D sprite)
-	: GameObject(pos, size, sprite, true, glm::vec3(1.0f), velocity), jumping(false) {}
+	: GameObject(pos, size, sprite, true, false, glm::vec3(1.0f), velocity), jumping(false) {}
 
 glm::vec2 CharacterObject::move(float deltaT, unsigned int window_width, unsigned int window_height) {
 	//position.y -= velocity.y * deltaT;
