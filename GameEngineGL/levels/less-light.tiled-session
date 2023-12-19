@@ -1,19 +1,31 @@
 {
-    "activeFile": "",
+    "activeFile": "lvl1.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "Desert.tsx": {
+            "scaleInDock": 8,
             "scaleInEditor": 1
+        },
+        "lvl1.tmx": {
+            "scale": 5.7475,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 120.13919095258811,
+                "y": 103.87124836885604
+            }
         }
     },
     "last.exportedFilePath": "C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/levels",
     "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
+        "lvl1.tmx",
+        "Desert.tsx"
     ],
     "project": "less-light.tiled-project",
     "recentFiles": [
-        "Desert.tsx"
+        "Desert.tsx",
+        "lvl1.tmx"
     ]
 }

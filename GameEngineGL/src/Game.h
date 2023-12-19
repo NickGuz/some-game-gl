@@ -11,6 +11,7 @@
 #include "BallObject.h"
 #include "Directions.h"
 #include "Receiver.h"
+#include "MenuScreen.h"
 
 // Initial size of the player
 const glm::vec2 PLAYER_SIZE(60.0f, 60.0f);

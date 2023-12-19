@@ -15,7 +15,7 @@ void GameLevel::init(const rapidjson::Value& background_layer,
     unsigned int width = background_layer["width"].GetInt();
     //float unit_width = level_width / static_cast<float>(width);
     //float unit_height = level_height / static_cast<float>(height);
-    float unit_width = 45.0f;
+    float unit_width = 50.0f;
     float unit_height = unit_width;
     std::cout << "unit_width: " << std::to_string(unit_width) << std::endl;
     std::cout << "unit_height: " << std::to_string(unit_height) << std::endl;

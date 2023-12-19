@@ -6,9 +6,11 @@
 SpriteRenderer* renderer;
 CharacterObject* player;
 Camera2D* camera;
+FontRenderer* font_renderer;
+MenuScreen* title_screen;
 
 Game::Game(unsigned int width, unsigned int height)
-	: width(width), height(height), state(GAME_ACTIVE), keys()
+	: width(width), height(height), state(GAME_MENU), keys()
 {
 	
 }
@@ -23,6 +25,7 @@ void Game::init() {
     camera = new Camera2D();
 	// load shaders
 	ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
+	ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/glyph.frag", nullptr, "glyph");
 
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
@@ -45,6 +48,9 @@ void Game::init() {
     ResourceManager::load_texture("textures/white_square.png", false, "pb");
     ResourceManager::load_texture("textures/empty-block.png", false, "eb");
 
+    font_renderer = new FontRenderer();
+    font_renderer->init();
+
 	// init player
 	glm::vec2 player_pos = glm::vec2(
 		width / 2.0f - PLAYER_SIZE.x / 2.0f,
@@ -52,6 +58,9 @@ void Game::init() {
 	);
 	player = new CharacterObject(player_pos, glm::vec2(50.0f, 50.0f), glm::vec2(0.0f, 0.0f), ResourceManager::get_texture("face"));
     camera->Player = player;
+    
+    // load menu screens
+    title_screen = new MenuScreen(font_renderer, width, height);
 
 	// load levels
 	GameLevel one(*player); one.load("levels/lvl1.json", width, height);
@@ -69,39 +78,51 @@ void Game::init() {
 }
 
 void Game::update(float deltaT) {
-	// should this be here?
-	EventQueue::getInstance().update(deltaT);
-
-	//while (receiver.hasNextEvent()) {
-	//	const GameEvent event = receiver.getNextEvent();
-
-	//	// pass this off to handler function probably, but for now just doing here...
-	//	if (event.type == "LEVEL_END") {
-	//		log_debug("HANDLING LEVEL_END EVENT");
-	//	}
-	//}
-	// update objects
-    // TODO we probably want to check for collisions BEFORE moving the player
-	player->move(deltaT, width, height);
-    camera->update(deltaT);
-
-	// update the level? 
-	levels[level].update(deltaT);
-	if (levels[level].is_completed()) {
-        std::cout << "Level completed" << std::endl;
-		glfwSetWindowShouldClose(window, true);
-	}
-
-    // update shader (camera) position
-    // don't know if this is right
-    ResourceManager::get_shader("sprite").use();
-    ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
-    ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
-
-	// check for collisions
-	do_collisions();
-
-	// check loss condition
+    switch (state) {
+    case GAME_ACTIVE: {
+        // should this be here?
+        //EventQueue::getInstance().update(deltaT);
+  
+        //while (receiver.hasNextEvent()) {
+        //	const GameEvent event = receiver.getNextEvent();
+  
+        //	// pass this off to handler function probably, but for now just doing here...
+        //	if (event.type == "LEVEL_END") {
+        //		log_debug("HANDLING LEVEL_END EVENT");
+        //	}
+        //}
+        // update objects
+        // TODO we probably want to check for collisions BEFORE moving the player
+        player->move(deltaT, width, height);
+  
+        // check for collisions
+        do_collisions();
+  
+        camera->update(deltaT);
+  
+        // update the level? 
+        levels[level].update(deltaT);
+        if (levels[level].is_completed()) {
+            std::cout << "Level completed" << std::endl;
+            glfwSetWindowShouldClose(window, true);
+        }
+  
+        // update shader (camera) position
+        // don't know if this is right
+        ResourceManager::get_shader("sprite").use();
+        ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
+        ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
+  
+        // check loss condition
+        break;
+    }
+    case GAME_MENU: {
+        title_screen->update(deltaT);
+        break;
+    }
+    case GAME_WIN:
+        break;
+    }
 }
 
 void Game::reset_level() {
@@ -122,40 +143,63 @@ void Game::reset_player() {
 }
 
 void Game::processInput(float deltaT) {
-	if (state == GAME_ACTIVE) {
-		float velocity = PLAYER_VELOCITY * deltaT;
+    switch (state) {
+    case GAME_ACTIVE: {
+        float velocity = PLAYER_VELOCITY * deltaT;
 
-		// move player
-		if (keys[GLFW_KEY_A]) {
+        // move player
+        if (keys[GLFW_KEY_A]) {
             player->position.x -= velocity;
-		}
-		if (keys[GLFW_KEY_D]) {
+        }
+        if (keys[GLFW_KEY_D]) {
             player->position.x += velocity;
-		}
+        }
         if (keys[GLFW_KEY_W]) {
             player->position.y -= velocity;
         }
         if (keys[GLFW_KEY_S]) {
             player->position.y += velocity;
         }
-		if (keys[GLFW_KEY_SPACE]) {
-			player->jump(deltaT);
-		}
-	}
+        if (keys[GLFW_KEY_SPACE]) {
+            player->jump(deltaT);
+        }
+        break;
+    }
+    case GAME_MENU: {
+        if (keys[GLFW_KEY_SPACE]) {
+            /* title_screen->end(); */
+            std::cout << "Space" << std::endl;
+            state = GAME_ACTIVE;
+        }
+        break;
+    }
+    case GAME_WIN:
+        break;
+    }
 }
 
 void Game::render() {
-	if (state == GAME_ACTIVE) {
-		// draw background
-		renderer->draw_sprite(ResourceManager::get_texture("background"),
-			glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f);
+    switch (state) {
+    case GAME_ACTIVE:
+        // draw background
+        renderer->draw_sprite(ResourceManager::get_texture("background"),
+                glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f);
 
-		// draw level
-		levels[level].draw(*renderer);
+        // draw level
+        levels[level].draw(*renderer);
 
-		// draw player
-		player->draw(*renderer);
-	}
+        // draw player
+        player->draw(*renderer);
+        break;
+
+    case GAME_MENU:
+        // draw main menu screen
+        title_screen->draw();
+        break;
+
+    case GAME_WIN:
+        break;
+    }
 }
 
 Direction vector_direction(glm::vec2 target) {

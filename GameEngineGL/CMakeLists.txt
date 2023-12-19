@@ -49,6 +49,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 # link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/vulkan")
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.lib"
     #"${Vulkan_LIBRARIES}"
     # "${VLK}"
     opengl32.lib)
