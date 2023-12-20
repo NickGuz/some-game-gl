@@ -23,8 +23,6 @@ const glm::vec2 INITIAL_BALL_VELOCITY(100.0f, -350.0f);
 // Radius of the ball object
 const float BALL_RADIUS = 12.5f;
 
-const float BOX_SPEED = 120.0f;
-
 enum GameState {
 	GAME_ACTIVE,
 	GAME_MENU,
@@ -58,15 +56,6 @@ public:
 	void processInput(float deltaT);
 	void update(float deltaT);
 	void render();
-
-	// collision
-    
-    // Check and handle all collision resolutions
-	void do_collisions();
-	//bool check_collision(GameObject& one, GameObject& two); // AABB - AABB collision
-	//bool check_collision(BallObject& circle, GameObject& aabb); // AABB - Circle collision
-
-    bool will_collide(const GameObject& object);
 
 	void reset_level();
 	void reset_player();

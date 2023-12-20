@@ -16,7 +16,7 @@ void MenuScreen::update(float dt) {
 void MenuScreen::draw() {
     float width, height;
     float scale = 2.0f;
-    GLTtext* text = font_renderer->prep_text("Sokobo!", scale, &width, &height);
+    GLTtext* text = font_renderer->prep_text("More Light", scale, &width, &height);
     font_renderer->draw_text(text, 
             (screen_width / 2.0f) - (width / 2.0f), 
             (screen_height / 2.0f) - (height / 2.0f), scale);

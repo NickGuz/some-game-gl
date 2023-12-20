@@ -11,7 +11,7 @@ public:
 	CharacterObject();
 	CharacterObject(glm::vec2 pos, glm::vec2 size, glm::vec2 velocity, Texture2D sprite);
 
-	glm::vec2 move(float deltaT, unsigned int window_width, unsigned int window_height);
+	glm::vec2 move(float deltaT);
 	void jump(float deltaT);
 
 	void reset(glm::vec2 position, glm::vec2 velocity);

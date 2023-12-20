@@ -6,7 +6,7 @@ CharacterObject::CharacterObject()
 CharacterObject::CharacterObject(glm::vec2 pos, glm::vec2 size, glm::vec2 velocity, Texture2D sprite)
 	: GameObject(pos, size, sprite, true, false, glm::vec3(1.0f), velocity), jumping(false) {}
 
-glm::vec2 CharacterObject::move(float deltaT, unsigned int window_width, unsigned int window_height) {
+glm::vec2 CharacterObject::move(float deltaT) {
 	//position.y -= velocity.y * deltaT;
 	position.y -= velocity.y * deltaT;
 	position.x += velocity.x * deltaT;
