@@ -1,4 +1,8 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "lvl1.tmx",
     "expandedProjectPaths": [
     ],
@@ -13,12 +17,23 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 120.13919095258811,
-                "y": 103.87124836885604
+                "y": 103.52327098738584
+            }
+        },
+        "lvl2.tmx": {
+            "scale": 7.002291666666666,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 120.03213233762756,
+                "y": 80.11662848472226
             }
         }
     },
     "last.exportedFilePath": "C:/Users/niick/source/repos/GameEngineGL_cmake/GameEngineGL/levels",
-    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
     "openFiles": [
         "lvl1.tmx",
         "Desert.tsx"

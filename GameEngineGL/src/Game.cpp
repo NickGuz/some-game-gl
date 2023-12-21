@@ -18,6 +18,9 @@ Game::Game(unsigned int width, unsigned int height)
 Game::~Game() {
 	delete renderer;
 	delete player;
+    delete camera;
+    delete font_renderer;
+    delete title_screen;
 }
 
 void Game::init() {
@@ -26,6 +29,7 @@ void Game::init() {
 	// load shaders
 	ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
 	ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/glyph.frag", nullptr, "glyph");
+    ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/level_restart.frag", nullptr, "level_restart");
 
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
@@ -33,6 +37,8 @@ void Game::init() {
 	ResourceManager::get_shader("sprite").use().setInt("image", 0);
     ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
 	ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
+
+    ResourceManager::get_shader("level_restart").use().setMat4("projection", camera->GetProjectionMatrix());
 
 	// set render-specific controls
 	renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
@@ -64,11 +70,11 @@ void Game::init() {
 
 	// load levels
 	GameLevel one(player, font_renderer, width, height); one.load("levels/lvl1.json");
-	/* GameLevel two(*player); two.load("levels/two.lvl", width, height); */
+	GameLevel two(player, font_renderer, width, height); two.load("levels/lvl2.json");
 	/* GameLevel three(*player); three.load("levels/three.lvl", width, height); */
 	/* GameLevel four(*player); four.load("levels/four.lvl", width, height); */
 	levels.push_back(one);
-	/* levels.push_back(two); */
+	levels.push_back(two);
 	/* levels.push_back(three); */
 	/* levels.push_back(four); */
 	level = 0;
@@ -86,8 +92,12 @@ void Game::update(float deltaT) {
         levels[level].update(deltaT);
         if (levels[level].is_completed()) {
             log_info("Level completed");
-            state = GAME_MENU;
-            reset_level();
+            level++;
+            if (level >= levels.size()) {
+                state = GAME_MENU;
+                level = 0;
+                reset_level();
+            }
         }
         camera->update(deltaT);
   
@@ -96,6 +106,12 @@ void Game::update(float deltaT) {
         ResourceManager::get_shader("sprite").use();
         ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
         ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
+
+        // TODO i doubt this works
+        ResourceManager::get_shader("level_end").use();
+        ResourceManager::get_shader("level_end").setMat4("projection", camera->GetProjectionMatrix());
+        ResourceManager::get_shader("level_end").setVec2f("resolution", width, height);
+        ResourceManager::get_shader("level_end").setFloat("time", deltaT);
         break;
     }
     case GAME_MENU: {
@@ -110,8 +126,8 @@ void Game::update(float deltaT) {
 void Game::reset_level() {
 	if (level == 0)
 		levels[0].load("levels/lvl1.json");
-	/* else if (level == 1) */
-	/* 	levels[1].load("levels/two.lvl", width, height); */
+	else if (level == 1)
+		levels[1].load("levels/lvl2.json");
 	/* else if (level == 2) */
 	/* 	levels[2].load("levels/three.lvl", width, height); */
 	/* else if (level == 3) */
@@ -144,6 +160,9 @@ void Game::processInput(float deltaT) {
         }
         if (keys[GLFW_KEY_SPACE]) {
             player->jump(deltaT);
+        }
+        if (keys[GLFW_KEY_R]) {
+            reset_level();
         }
         break;
     }
