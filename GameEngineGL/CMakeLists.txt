@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.1...3.27)
 
+if(UNIX AND NOT APPLE)
+    set(LINUX TRUE)
+endif()
+
 project(
     GameEngineGL
     VERSION 1.0
-    LANGUAGES CXX
+    LANGUAGES CXX C
 )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -47,16 +51,26 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 # link lib path
 # link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/vulkan")
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
-    "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.lib"
-    #"${Vulkan_LIBRARIES}"
-    # "${VLK}"
-    opengl32.lib)
+if (LINUX)
+    target_link_libraries(${PROJECT_NAME} PRIVATE glfw
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib/libglfw3.a"
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib/libfreetype.a")
+else()
+    target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.lib"
+        #"${Vulkan_LIBRARIES}"
+        # "${VLK}"
+        opengl32.lib)
+endif()
 
 # set c++ standard
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 # add compiler flags
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall) 
+if(LINUX)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl)
+else()
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall) 
+endif()
 
