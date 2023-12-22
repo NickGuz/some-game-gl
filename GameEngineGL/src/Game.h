@@ -59,5 +59,8 @@ public:
 
 	void reset_level();
 	void reset_player();
+
+private:
+    float time_elapsed;
 };
 

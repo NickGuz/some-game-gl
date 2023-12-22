@@ -3,8 +3,9 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl1.tmx",
+    "activeFile": "lvl2.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -22,7 +23,7 @@
         },
         "lvl2.tmx": {
             "scale": 7.002291666666666,
-            "selectedLayer": 3,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 120.03213233762756,
                 "y": 80.11662848472226
@@ -36,11 +37,13 @@
     "map.tileWidth": 8,
     "openFiles": [
         "lvl1.tmx",
+        "lvl2.tmx",
         "Desert.tsx"
     ],
     "project": "less-light.tiled-project",
     "recentFiles": [
+        "lvl1.tmx",
         "Desert.tsx",
-        "lvl1.tmx"
+        "lvl2.tmx"
     ]
 }

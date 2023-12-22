@@ -64,6 +64,25 @@ void SpriteRenderer::draw_sprite(Texture2D& texture, glm::vec2 position,
 	glBindVertexArray(0);
 }
 
+void SpriteRenderer::draw_global_shader(glm::vec2 position, glm::vec2 size, float rotate, float time) {
+    this->shader.use();
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(position, 0.0f));
+
+    model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+    model = glm::rotate(model, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+
+    model = glm::scale(model, glm::vec3(size, 1.0f));
+
+    this->shader.setMat4("model", model);
+    this->shader.setFloat("time", time);
+
+    glBindVertexArray(this->quadVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(0);
+}
+
 void SpriteRenderer::init_render_data() {
 	// configure VAO/VBO
 	unsigned int VBO;

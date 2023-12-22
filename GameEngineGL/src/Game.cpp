@@ -7,6 +7,7 @@ SpriteRenderer* renderer;
 CharacterObject* player;
 Camera2D* camera;
 FontRenderer* font_renderer;
+SpriteRenderer* shader_renderer;
 MenuScreen* title_screen;
 
 Game::Game(unsigned int width, unsigned int height)
@@ -17,6 +18,7 @@ Game::Game(unsigned int width, unsigned int height)
 
 Game::~Game() {
 	delete renderer;
+    delete shader_renderer;
 	delete player;
     delete camera;
     delete font_renderer;
@@ -29,7 +31,7 @@ void Game::init() {
 	// load shaders
 	ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
 	ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/glyph.frag", nullptr, "glyph");
-    ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/level_restart.frag", nullptr, "level_restart");
+    ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/level_restart.frag", nullptr, "level_restart");
 
 	// configure shaders
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
@@ -38,10 +40,12 @@ void Game::init() {
     ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
 	ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
 
-    ResourceManager::get_shader("level_restart").use().setMat4("projection", camera->GetProjectionMatrix());
+    ResourceManager::get_shader("level_restart").use().setMat4("view", camera->GetViewMatrix());
+    ResourceManager::get_shader("level_restart").setMat4("projection", camera->GetProjectionMatrix());
 
 	// set render-specific controls
 	renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
+    shader_renderer = new SpriteRenderer(ResourceManager::get_shader("level_restart"));
 
 	// load textures
 	ResourceManager::load_texture("textures/background.jpg", false, "background");
@@ -84,6 +88,8 @@ void Game::init() {
 }
 
 void Game::update(float deltaT) {
+    /* time_elapsed += deltaT; */
+
     EventQueue::getInstance().update(deltaT);
 
     switch (state) {
@@ -108,10 +114,11 @@ void Game::update(float deltaT) {
         ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
 
         // TODO i doubt this works
-        ResourceManager::get_shader("level_end").use();
-        ResourceManager::get_shader("level_end").setMat4("projection", camera->GetProjectionMatrix());
-        ResourceManager::get_shader("level_end").setVec2f("resolution", width, height);
-        ResourceManager::get_shader("level_end").setFloat("time", deltaT);
+        /* ResourceManager::get_shader("level_end").use(); */
+        /* ResourceManager::get_shader("level_end").setMat4("view", camera->GetViewMatrix()); */
+        /* ResourceManager::get_shader("level_end").setMat4("projection", camera->GetProjectionMatrix()); */
+        /* ResourceManager::get_shader("level_end").setVec2f("resolution", width, height); */
+        /* ResourceManager::get_shader("level_end").setFloat("time", time_elapsed); */
         break;
     }
     case GAME_MENU: {
@@ -188,6 +195,9 @@ void Game::render() {
 
         // draw level
         levels[level].draw(*renderer);
+
+        // draw shader
+        shader_renderer->draw_global_shader(glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f, glfwGetTime());
         break;
 
     case GAME_MENU:
