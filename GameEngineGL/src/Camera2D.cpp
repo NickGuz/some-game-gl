@@ -30,11 +30,12 @@ glm::mat4 Camera2D::GetViewMatrix() {
 	//return glm::lookAt(Position, Position + Front, Up);
     // return glm::ortho(0.0f, (float)ScreenWidth, (float)ScreenHeight, 0.0f, -1.0f, 1.0f) *
     //        glm::lookAt(glm::vec3(Position, 0.0f), glm::vec3(Position, -1.0f), Up);
-    return glm::lookAt(glm::vec3(Position, 0.0f), glm::vec3(Position, -1.0f), Up);
+    return glm::lookAt(glm::vec3(Position, 0.0f), glm::vec3(Position * Zoom, -1.0f), Up);
 }
 
 glm::mat4 Camera2D::GetProjectionMatrix() {
-    return glm::ortho(0.0f, (float)ScreenWidth, (float)ScreenHeight, 0.0f, -1.0f, 1.0f);
+    // TODO change level size eventually so it's centered on screen
+    return glm::ortho(0.0f, (float)ScreenWidth * (2.0f - Zoom), (float)ScreenHeight * (2.0f - Zoom), 0.0f, -1.0f, 1.0f);
 }
 
 void Camera2D::ProcessKeyboard(Camera_Movement direction, float deltaTime) {
@@ -47,8 +48,6 @@ void Camera2D::ProcessKeyboard(Camera_Movement direction, float deltaTime) {
 		Position.x -= velocity;
 	if (direction == C_RIGHT)
 		Position.x += velocity;
-
-	//Position.y = 0.0f; // keeps user on ground, kinda hacky and might not be good way to do this in the long run
 }
 
 void Camera2D::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch) {
@@ -79,8 +78,8 @@ void Camera2D::update(float deltaT) {
 		std::cout << "HAS EVENT" << std::endl;
 	}
 
+    // commenting out to use a fixed camera
     //Position.x = Player->position.x - (ScreenWidth / 2.0f) + (Player->size.x / 2.0f);
     //Position.y = Player->position.y - (ScreenHeight / 2.0f) + (Player->size.y / 2.0f);
-    //std::cout << "Playerpos: " << Player->position.y << ", camerapos: " << Position.y << std::endl;
 }
 

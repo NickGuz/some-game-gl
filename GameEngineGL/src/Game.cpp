@@ -31,7 +31,7 @@ Game::~Game() {
 
 void Game::init() {
     // init camera
-    camera = new Camera2D(0.0f, 0.0f, width, height);
+    camera = new Camera2D(0.0f, 0.0f, width, height, 0.9f);
 
     // load shaders
     ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
