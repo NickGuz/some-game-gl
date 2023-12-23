@@ -77,6 +77,7 @@ void SpriteRenderer::draw_global_shader(glm::vec2 position, glm::vec2 size, floa
 
     this->shader.setMat4("model", model);
     this->shader.setFloat("time", time);
+    this->shader.setVec2fv("resolution", size);
 
     glBindVertexArray(this->quadVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);

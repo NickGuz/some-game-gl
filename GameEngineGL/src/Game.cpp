@@ -1,14 +1,18 @@
+#include <irrklang/irrKlang.h>
+
 #include "Game.h"
 #include "SpriteRenderer.h"
 #include "Camera2D.h"
 #include "logger.h"
+//#include "SoundEngine.h"
 
-SpriteRenderer* renderer;
-CharacterObject* player;
-Camera2D* camera;
-FontRenderer* font_renderer;
-SpriteRenderer* shader_renderer;
-MenuScreen* title_screen;
+SpriteRenderer *renderer;
+CharacterObject *player;
+Camera2D *camera;
+FontRenderer *font_renderer;
+SpriteRenderer *shader_renderer;
+MenuScreen *title_screen;
+irrklang::ISoundEngine *sound_engine = irrklang::createIrrKlangDevice();
 
 Game::Game(unsigned int width, unsigned int height)
 	: width(width), height(height), state(GAME_MENU), keys()
@@ -27,64 +31,69 @@ Game::~Game() {
 
 void Game::init() {
     // init camera
-    camera = new Camera2D();
-	// load shaders
-	ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
-	ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/glyph.frag", nullptr, "glyph");
-    ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/level_restart.frag", nullptr, "level_restart");
+    camera = new Camera2D(0.0f, 0.0f, width, height);
 
-	// configure shaders
-	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
-		static_cast<float>(this->height), 0.0f, -1.0f, 1.0f);
-	ResourceManager::get_shader("sprite").use().setInt("image", 0);
+    // load shaders
+    ResourceManager::load_shader("src/shaders/new_shader.vert", "src/shaders/new_shader.frag", nullptr, "sprite");
+    ResourceManager::load_shader("src/shaders/glyph.vert", "src/shaders/glyph.frag", nullptr, "glyph");
+    ResourceManager::load_shader("src/shaders/new_shader2.vert", "src/shaders/level_restart.frag", nullptr, "level_restart");
+
+    // configure shaders
+    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->width),
+        static_cast<float>(this->height), 0.0f, -1.0f, 1.0f);
+    ResourceManager::get_shader("sprite").use().setInt("image", 0);
     ResourceManager::get_shader("sprite").setMat4("view", camera->GetViewMatrix());
-	ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
+    ResourceManager::get_shader("sprite").setMat4("projection", camera->GetProjectionMatrix());
 
-    ResourceManager::get_shader("level_restart").use().setMat4("view", camera->GetViewMatrix());
-    ResourceManager::get_shader("level_restart").setMat4("projection", camera->GetProjectionMatrix());
+    //ResourceManager::get_shader("level_restart").use().setMat4("view", camera->GetViewMatrix());
+    //ResourceManager::get_shader("level_restart").setMat4("projection", camera->GetProjectionMatrix());
 
-	// set render-specific controls
-	renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
-    shader_renderer = new SpriteRenderer(ResourceManager::get_shader("level_restart"));
+    // set render-specific controls
+    renderer = new SpriteRenderer(ResourceManager::get_shader("sprite"));
+    //shader_renderer = new SpriteRenderer(ResourceManager::get_shader("level_restart"));
 
-	// load textures
-	ResourceManager::load_texture("textures/background.jpg", false, "background");
-	/* ResourceManager::load_texture("textures/awesomeface.png", true, "face"); */
+    // load textures
+    ResourceManager::load_texture("textures/background.jpg", false, "background");
+    /* ResourceManager::load_texture("textures/awesomeface.png", true, "face"); */
     ResourceManager::load_texture("textures/face.png", true, "face");
-	ResourceManager::load_texture("textures/block.png", false, "block");
-	ResourceManager::load_texture("textures/block_solid.png", false, "block_solid");
-	ResourceManager::load_texture("textures/paddle.png", true, "paddle");
-	ResourceManager::load_texture("textures/container.jpg", false, "desert");
+    ResourceManager::load_texture("textures/block.png", false, "block");
+    ResourceManager::load_texture("textures/block_solid.png", false, "block_solid");
+    ResourceManager::load_texture("textures/paddle.png", true, "paddle");
+    ResourceManager::load_texture("textures/container.jpg", false, "desert");
     ResourceManager::load_texture("textures/white_square.png", false, "pb");
     ResourceManager::load_texture("textures/empty-block.png", false, "eb");
 
     font_renderer = new FontRenderer();
     font_renderer->init();
 
-	// init player
-	glm::vec2 player_pos = glm::vec2(
-		width / 2.0f - PLAYER_SIZE.x / 2.0f,
-		height - PLAYER_SIZE.y * 2.0f
-	);
-	player = new CharacterObject(player_pos, glm::vec2(50.0f, 50.0f), glm::vec2(0.0f, 0.0f), ResourceManager::get_texture("face"));
+    // init player
+    glm::vec2 player_pos = glm::vec2(
+        width / 2.0f - PLAYER_SIZE.x / 2.0f,
+        height - PLAYER_SIZE.y * 2.0f
+    );
+    player = new CharacterObject(player_pos, glm::vec2(50.0f, 50.0f), glm::vec2(0.0f, 0.0f), ResourceManager::get_texture("face"));
     camera->Player = player;
-    
+
     // load menu screens
     title_screen = new MenuScreen(font_renderer, width, height);
 
-	// load levels
-	GameLevel one(player, font_renderer, width, height); one.load("levels/lvl1.json");
-	GameLevel two(player, font_renderer, width, height); two.load("levels/lvl2.json");
-	/* GameLevel three(*player); three.load("levels/three.lvl", width, height); */
-	/* GameLevel four(*player); four.load("levels/four.lvl", width, height); */
-	levels.push_back(one);
-	levels.push_back(two);
-	/* levels.push_back(three); */
-	/* levels.push_back(four); */
-	level = 0;
+    // load levels
+    GameLevel one(player, font_renderer, width, height, sound_engine); one.load("levels/lvl1.json");
+    GameLevel two(player, font_renderer, width, height, sound_engine); two.load("levels/lvl2.json");
+    /* GameLevel three(*player); three.load("levels/three.lvl", width, height); */
+    /* GameLevel four(*player); four.load("levels/four.lvl", width, height); */
+    levels.push_back(one);
+    levels.push_back(two);
+    /* levels.push_back(three); */
+    /* levels.push_back(four); */
+    level = 0;
 
-	// create receiver for events
-	//receiver.subscribe("LEVEL_END");
+    // create receiver for events
+    //receiver.subscribe("LEVEL_END");
+
+    // play music
+    sound_engine->setSoundVolume(0.5);
+    sound_engine->play2D("audio/breakout.mp3", true);
 }
 
 void Game::update(float deltaT) {
@@ -98,6 +107,7 @@ void Game::update(float deltaT) {
         levels[level].update(deltaT);
         if (levels[level].is_completed()) {
             log_info("Level completed");
+            sound_engine->play2D("audio/finish.wav");
             level++;
             if (level >= levels.size()) {
                 state = GAME_MENU;
@@ -197,7 +207,7 @@ void Game::render() {
         levels[level].draw(*renderer);
 
         // draw shader
-        shader_renderer->draw_global_shader(glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f, glfwGetTime());
+        //shader_renderer->draw_global_shader(glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f, glfwGetTime());
         break;
 
     case GAME_MENU:

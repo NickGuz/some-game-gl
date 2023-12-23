@@ -1,15 +1,18 @@
 #include "GameLevel.h"
 #include "logger.h"
+//#include "SoundEngine.hpp"
 
-GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height) 
-    : player(player), font_renderer(font_renderer), level_width(level_width), level_height(level_height), completed(false), end_timer_active(false) {
+GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, irrklang::ISoundEngine* sound_eng) 
+    : player(player), font_renderer(font_renderer), level_width(level_width), level_height(level_height), sound_engine(sound_eng), completed(false), end_timer_active(false) {
     player_start_pos = player->position;
+    sound = nullptr;
 }
 
 void GameLevel::init(const rapidjson::Value& background_layer, 
                      const rapidjson::Value& collidable_layer, 
                      const rapidjson::Value& movable_layer,
-                     const rapidjson::Value& finish_layer) {
+                     const rapidjson::Value& finish_layer,
+                     const rapidjson::Value& start_layer) {
     // calculate dimensions
     unsigned int height = background_layer["height"].GetInt();
     unsigned int width = background_layer["width"].GetInt();
@@ -21,6 +24,7 @@ void GameLevel::init(const rapidjson::Value& background_layer,
     std::cout << "unit_height: " << std::to_string(unit_height) << std::endl;
 
     // initialize background tiles
+
     int i = 0;
     int x = 0;
     int y = 0;
@@ -106,6 +110,27 @@ void GameLevel::init(const rapidjson::Value& background_layer,
         }
     }
 
+    // initialize start pos
+    i = 0;
+    x = 0;
+    y = 0;
+    for (auto& _n : start_layer["data"].GetArray()) {
+        int n = _n.GetInt();
+        if (n > 1) {
+            glm::vec2 pos(unit_width * x, unit_height * y);
+            glm::vec2 size(unit_width, unit_height);
+            //player->position = glm::vec2(pos.x + (size.x / 2.0f), pos.y + (size.y / 2.0f));
+            player->position = pos;
+            break;
+        }
+
+        i++;
+        x = i % width;
+        if (x == 0) {
+            y++;
+        }
+    }
+
     receiver.subscribe("LEVEL_END");
 }
 
@@ -137,13 +162,9 @@ void GameLevel::load(const char* file) {
     const rapidjson::Value& collision_layer = layers[1];
     const rapidjson::Value& movable_layer = layers[2];
     const rapidjson::Value& finish_layer = layers[3];
+    const rapidjson::Value& start_layer = layers[4];
 
-    std::cout << background_layer["class"].GetString() << std::endl;
-    std::cout << collision_layer["class"].GetString() << std::endl;
-    std::cout << movable_layer["class"].GetString() << std::endl;
-    std::cout << finish_layer["class"].GetString() << std::endl;
-
-    init(background_layer, collision_layer, movable_layer, finish_layer);
+    init(background_layer, collision_layer, movable_layer, finish_layer, start_layer);
 }
 
 void GameLevel::update(float delta_time) {
@@ -171,6 +192,7 @@ void GameLevel::update(float delta_time) {
                 completed = true;
                 end_timer_active = true;
                 end_time = delta_time;
+                sound_engine->play2D("audio/win.wav");
             }
         }
 	}
@@ -199,7 +221,7 @@ void GameLevel::draw(SpriteRenderer& renderer) {
         font_renderer->draw_text(
                 text, 
                 (level_width / 2.0f) - (width / 2.0f), 
-                (level_height / 2.0f) - (height / 2.0f), 
+                (level_height / 3.0f) - (height / 2.0f), 
                 scale
         );
     }
@@ -277,6 +299,11 @@ void GameLevel::do_collisions() {
             // check box-player collisions
 			Collision collision = check_collision(*player, *box);
 			if (std::get<0>(collision)) {
+
+                if (sound == nullptr || !sound_engine->isCurrentlyPlaying(sound->getSoundSource())) {
+                     sound = sound_engine->play2D("audio/hit.wav", false, false, true);
+                }
+
 				// collision resolution
 				Direction dir = std::get<1>(collision);
 				glm::vec2 diff_vec = std::get<2>(collision);

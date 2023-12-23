@@ -26,6 +26,7 @@
     <ClCompile Include="src\Emitter.cpp" />
     <ClCompile Include="src\Event.cpp" />
     <ClCompile Include="src\EventQueue.cpp" />
+    <ClCompile Include="src\FontRenderer.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameLevel.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -33,13 +34,16 @@
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MenuScreen.cpp" />
     <ClCompile Include="src\othermain.cpp" />
     <ClCompile Include="src\Receiver.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\SpriteRenderer.cpp" />
+    <ClCompile Include="src\Spritesheet.cpp" />
     <ClCompile Include="src\stb_image.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Trigger.cpp" />
     <ClCompile Include="src\tutorial.cpp" />
     <ClCompile Include="src\VulkanWrapper.cpp" />
@@ -53,18 +57,23 @@
     <ClInclude Include="src\Emitter.h" />
     <ClInclude Include="src\EventQueue.h" />
     <ClInclude Include="src\EventType.h" />
+    <ClInclude Include="src\FontRenderer.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameEvent.h" />
     <ClInclude Include="src\GameLevel.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\MenuScreen.h" />
     <ClInclude Include="src\Receiver.h" />
     <ClInclude Include="src\ResourceManager.h" />
     <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\SoundEngine.h" />
     <ClInclude Include="src\SpriteRenderer.h" />
+    <ClInclude Include="src\Spritesheet.h" />
     <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\Texture2D.h" />
+    <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\Trigger.h" />
     <ClInclude Include="src\VulkanWrapper.h" />
   </ItemGroup>
@@ -142,7 +151,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\niick\Documents\GameDev\opengl\lib</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngineGL\lib;C:\Users\niick\Documents\GameDev\opengl\lib</LibraryPath>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\niick\Documents\GameDev\opengl\include;C:\Users\niick\source\repos\GameEngineGL_cmake\GameEngine\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -185,9 +194,15 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;vulkan-1.lib;glfw3.lib;freetype.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\VulkanSDK\1.3.268.0\Lib</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)\GameEngineGL\lib\*.dll" "$(TargetDir)" /D /K /Y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy DLLs to target directory</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

@@ -2,25 +2,36 @@
 
 out vec4 FragColor;
 
-in vec2 TexCoords;
-//in vec3 Normal;
-//in vec3 FragPos;
+in vec2 FragCoords;
 
 uniform vec2 resolution;
 uniform float time;
 
-void main()
-{
-    // Normalized pixel coordinates (from 0 to 1)
-    //vec2 uv = 
-
-    // vec4 blackAlpha = vec4(0.0, 0.0, 0.0, 1.0 * cos(time));
-    // FragColor = blackAlpha;
-
-    //vec2 uv = TexCoords / resolution.xy;
-
-    //vec3 col = 0.5 + 0.5 * cos(time + uv.xyx + vec3(0, 2, 4));
-    //vec3 col = 0.5 + 0.5 * cos(vec3(0, 2, 4));
-
-    FragColor = vec4(0.0, 0.0, 0.0, abs(sin(time / 4.0)));
+vec3 rgb(float r, float g, float b) {
+    return vec3(r / 255.0, g / 255.0, b / 255.0);
 }
+
+vec4 circle(vec2 uv, vec2 pos, float rad, vec3 color) {
+    float d = length(pos - uv) - rad;
+    float t = clamp(d, 0.0, 1.0);
+    return vec4(color, 1.0 - t);
+}
+
+void main() {
+    vec2 uv = FragCoords.xy;
+    //vec2 center = resolution.xy * 0.5;
+    vec2 center = vec2(0.31, 0.31) * resolution.xy;  // ???
+    float radius = resolution.y * (1.5 - time);
+
+    // background layer
+    vec4 layer1 = vec4(rgb(210.0, 222.0, 228.0), 1.0);
+
+    // circle
+    vec3 black = rgb(0.0, 0.0, 0.0);
+    vec4 layer2 = circle(uv, center, radius, black);
+
+    // blend the two
+    //FragColor = mix(layer1, layer2, layer2.a);
+    FragColor = layer2;
+}
+

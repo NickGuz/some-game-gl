@@ -38,8 +38,8 @@ public:
 	// constructor with vectors
 	Camera2D(
         glm::vec2 position = glm::vec2(0.0f, 0.0f), 
-        unsigned int screen_width = 800, 
-        unsigned screen_height = 600, 
+        unsigned int screen_width = 1600, 
+        unsigned screen_height = 900, 
         float zoom = 1.0f
     );
 
@@ -47,8 +47,8 @@ public:
 	Camera2D(
 		float posX,
 		float posY,
-        unsigned int screen_width = 800,
-        unsigned int screen_height = 600,
+        unsigned int screen_width = 1600,
+        unsigned int screen_height = 900,
         float zoom = 1.0f
 	);
 

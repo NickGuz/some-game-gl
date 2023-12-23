@@ -5,6 +5,7 @@
 #include <rapidjson/stringbuffer.h>
 #include <iostream>
 #include <vector>
+#include <irrklang/irrKlang.h>
 
 #include "CharacterObject.h"
 #include "ResourceManager.h"
@@ -30,10 +31,13 @@ public:
 	Emitter emitter;
     FontRenderer* font_renderer;
 
+	irrklang::ISoundEngine *sound_engine;
+	irrklang::ISound *sound; // keep track of a sound interface to check if sound is currently playing
+
     unsigned int level_width;
     unsigned int level_height;
 
-	GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height);
+	GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, irrklang::ISoundEngine *sound_eng);
 
 	// loads level from file
 	void load(const char* file);
@@ -52,7 +56,8 @@ private:
     void init(const rapidjson::Value& background_layer, 
               const rapidjson::Value& collidable_layer, 
               const rapidjson::Value& movable_layer,
-              const rapidjson::Value& finish_layer
+              const rapidjson::Value& finish_layer,
+              const rapidjson::Value& start_layer
               );
 
 	bool completed;

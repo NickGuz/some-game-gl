@@ -13,20 +13,28 @@
             "scaleInDock": 8,
             "scaleInEditor": 1
         },
+        "lvl1.json": {
+            "scale": 7.002291666666666,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 120.03213233762756,
+                "y": 80.11662848472226
+            }
+        },
         "lvl1.tmx": {
             "scale": 5.7475,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 120.13919095258811,
-                "y": 103.52327098738584
+                "y": 103.34928229665071
             }
         },
         "lvl2.tmx": {
             "scale": 7.002291666666666,
-            "selectedLayer": 1,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 120.03213233762756,
-                "y": 80.11662848472226
+                "x": 119.88932194817171,
+                "y": 79.83100770581059
             }
         }
     },

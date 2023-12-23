@@ -59,6 +59,7 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.lib"
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib/irrKlang.lib"
         #"${Vulkan_LIBRARIES}"
         # "${VLK}"
         opengl32.lib)

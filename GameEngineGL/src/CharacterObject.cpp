@@ -1,4 +1,5 @@
 #include "CharacterObject.h"
+#include "logger.h"
 
 CharacterObject::CharacterObject()
 	: GameObject(), jumping(false) {}
