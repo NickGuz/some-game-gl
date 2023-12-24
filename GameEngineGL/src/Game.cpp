@@ -1,10 +1,8 @@
-#include <irrklang/irrKlang.h>
-
 #include "Game.h"
 #include "SpriteRenderer.h"
 #include "Camera2D.h"
 #include "logger.h"
-//#include "SoundEngine.h"
+#include "SoundEngine.h"
 
 SpriteRenderer *renderer;
 CharacterObject *player;
@@ -12,7 +10,7 @@ Camera2D *camera;
 FontRenderer *font_renderer;
 SpriteRenderer *shader_renderer;
 MenuScreen *title_screen;
-irrklang::ISoundEngine *sound_engine = irrklang::createIrrKlangDevice();
+SoundEngine *sound_engine;
 
 Game::Game(unsigned int width, unsigned int height)
 	: width(width), height(height), state(GAME_MENU), keys()
@@ -77,6 +75,9 @@ void Game::init() {
     // load menu screens
     title_screen = new MenuScreen(font_renderer, width, height);
 
+    // init sound
+    sound_engine = new SoundEngine();
+
     // load levels
     GameLevel one(player, font_renderer, width, height, sound_engine); one.load("levels/lvl1.json");
     GameLevel two(player, font_renderer, width, height, sound_engine); two.load("levels/lvl2.json");
@@ -92,8 +93,8 @@ void Game::init() {
     //receiver.subscribe("LEVEL_END");
 
     // play music
-    sound_engine->setSoundVolume(0.5);
-    sound_engine->play2D("audio/breakout.mp3", true);
+    sound_engine->set_volume(0.5f);
+    sound_engine->play_sound("audio/breakout.mp3", true);
 }
 
 void Game::update(float deltaT) {
@@ -107,7 +108,8 @@ void Game::update(float deltaT) {
         levels[level].update(deltaT);
         if (levels[level].is_completed()) {
             log_info("Level completed");
-            sound_engine->play2D("audio/finish.wav");
+            /* sound_engine->play2D("audio/finish.wav"); */
+            sound_engine->play_sound("audio/finish.wav");
             level++;
             if (level >= levels.size()) {
                 state = GAME_MENU;

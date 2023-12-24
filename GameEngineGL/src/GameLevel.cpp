@@ -2,7 +2,7 @@
 #include "logger.h"
 //#include "SoundEngine.hpp"
 
-GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, irrklang::ISoundEngine* sound_eng) 
+GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, SoundEngine* sound_eng) 
     : player(player), font_renderer(font_renderer), level_width(level_width), level_height(level_height), sound_engine(sound_eng), completed(false), end_timer_active(false) {
     player_start_pos = player->position;
     sound = nullptr;
@@ -192,7 +192,8 @@ void GameLevel::update(float delta_time) {
                 completed = true;
                 end_timer_active = true;
                 end_time = delta_time;
-                sound_engine->play2D("audio/win.wav");
+                /* sound_engine->play2D("audio/win.wav"); */
+                sound_engine->play_sound("audio/win.wav");
             }
         }
 	}
@@ -300,9 +301,7 @@ void GameLevel::do_collisions() {
 			Collision collision = check_collision(*player, *box);
 			if (std::get<0>(collision)) {
 
-                if (sound == nullptr || !sound_engine->isCurrentlyPlaying(sound->getSoundSource())) {
-                     sound = sound_engine->play2D("audio/hit.wav", false, false, true);
-                }
+                sound_engine->play_if_not_already("audio/hit.wav", false);
 
 				// collision resolution
 				Direction dir = std::get<1>(collision);

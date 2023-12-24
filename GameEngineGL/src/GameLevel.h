@@ -13,6 +13,7 @@
 #include "Emitter.h"
 #include "Receiver.h"
 #include "FontRenderer.h"
+#include "SoundEngine.h"
 
 const float BOX_SPEED = 120.0f;
 
@@ -31,13 +32,13 @@ public:
 	Emitter emitter;
     FontRenderer* font_renderer;
 
-	irrklang::ISoundEngine *sound_engine;
+	SoundEngine *sound_engine;
 	irrklang::ISound *sound; // keep track of a sound interface to check if sound is currently playing
 
     unsigned int level_width;
     unsigned int level_height;
 
-	GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, irrklang::ISoundEngine *sound_eng);
+	GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, SoundEngine *sound_eng);
 
 	// loads level from file
 	void load(const char* file);
