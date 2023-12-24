@@ -21,16 +21,18 @@ public:
         sound_engine->play2D(filename, loop);
     }
 
+    // TODO never removing from sounds map - I don't think it should ever get that large but
+    //      something to keep an eye one
     void play_if_not_already(const char* filename, bool loop = false) {
         if (sounds.find(filename) == sounds.end()) {
-            irrklang::ISound *sound = sound_engine->play2D(filename, loop, false, true);
+            irrklang::ISoundSource *sound = sound_engine->play2D(filename, loop, false, true)->getSoundSource();
             sounds[filename] = sound;
             return;
         }
 
-        irrklang::ISound *sound = sounds[filename];
-        if (!sound_engine->isCurrentlyPlaying(sound->getSoundSource())) {
-            sounds[filename] = sound_engine->play2D(filename, loop, false, true);
+        irrklang::ISoundSource *sound = sounds[filename];
+        if (!sound_engine->isCurrentlyPlaying(sound)) {
+            sounds[filename] = sound_engine->play2D(filename, loop, false, true)->getSoundSource();
         }
     }
 
@@ -45,6 +47,6 @@ public:
 private:
 	irrklang::ISoundEngine *sound_engine;
 
-    std::unordered_map<const char*, irrklang::ISound*> sounds;
+    std::unordered_map<const char*, irrklang::ISoundSource*> sounds;
 
 };
