@@ -33,28 +33,21 @@ add_executable(${PROJECT_NAME} ${SRCS} ${HDRS} "src/glad.c" "include/glad/glad.h
 #find_package(Vulkan REQUIRED)
 # target_link_libraries(${PROJECT_NAME} ${Vulkan_LIBRARIES})
 
-# add include path
-# include_directories("include")
-# target_include_directories(${PROJECT_NAME} INTERFACE 
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glad"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/GLFW"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/detail"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/ext"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/gtc"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/gtx"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/glm/simd"
-#     "${CMAKE_CURRENT_SOURCE_DIR}/include/KHR"
-# )
 target_include_directories(${PROJECT_NAME} PUBLIC 
     "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 # link lib path
 # link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/vulkan")
 if (LINUX)
+    find_library(LIB_IRRKLANG 
+        NAMES libIrrKlang irrklang irrKlang IrrKlang libirrklang libirrKlang
+        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+
     target_link_libraries(${PROJECT_NAME} PRIVATE glfw
-        "${CMAKE_CURRENT_SOURCE_DIR}/lib/libglfw3.a"
-        "${CMAKE_CURRENT_SOURCE_DIR}/lib/libfreetype.a")
+        "${LIB_IRRKLANG}"
+        #"${CMAKE_CURRENT_SOURCE_DIR}/lib/libglfw3.a"
+        #"${CMAKE_CURRENT_SOURCE_DIR}/lib/libfreetype.a")
+         )
 else()
     target_link_libraries(${PROJECT_NAME} PRIVATE glfw 
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 

@@ -2,7 +2,7 @@
 
 original_directory=$(pwd)
 
-if [[ -f "$original_directory/build/CMakeCache.txt" ]]; then
+if [[ ! -f "$original_directory/build/CMakeCache.txt" ]]; then
     cd build
 
     current_directory=$(pwd)
@@ -13,9 +13,9 @@ if [[ -f "$original_directory/build/CMakeCache.txt" ]]; then
 
     cmake ..
     cd $original_directory
-    cp lib/*.dll build/Debug/
+    cp lib/ikpMP3.so .
     exit 0
 fi
 
 cmake --build build/
-cp lib/*.dll build/Debug/
+cp lib/ikpMP3.so .

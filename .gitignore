@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 GameEngineGL/build/
+GameEngineGL/ikpMP3.so
 
 # User-specific files
 *.rsuser
