@@ -22,7 +22,7 @@ public:
     }
 
     // TODO never removing from sounds map - I don't think it should ever get that large but
-    //      something to keep an eye one
+    //      something to keep an eye on
     void play_if_not_already(const char* filename, bool loop = false) {
         if (sounds.find(filename) == sounds.end()) {
             irrklang::ISoundSource *sound = sound_engine->play2D(filename, loop, false, true)->getSoundSource();

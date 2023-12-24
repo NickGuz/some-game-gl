@@ -93,7 +93,7 @@ void Game::init() {
     //receiver.subscribe("LEVEL_END");
 
     // play music
-    sound_engine->set_volume(0.5f);
+    sound_engine->set_volume(0.0f);
     sound_engine->play_sound("audio/breakout.mp3", true);
 }
 
