@@ -1,0 +1,4 @@
+-Wall
+-std=c++17
+-L/home/nguzzardo/some-game-gl/GameEngineGL/lib
+-I/home/nguzzardo/some-game-gl/GameEngineGL/include

@@ -42,6 +42,8 @@ public:
 	unsigned int level;
 	Receiver receiver;
 
+    bool closing;
+
 	// keep a pointer to the window
 	GLFWwindow* window;
 	

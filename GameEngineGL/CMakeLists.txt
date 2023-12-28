@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.1...3.27)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 if(UNIX AND NOT APPLE)
     set(LINUX TRUE)
 endif()
@@ -33,8 +35,13 @@ add_executable(${PROJECT_NAME} ${SRCS} ${HDRS} "src/glad.c" "include/glad/glad.h
 #find_package(Vulkan REQUIRED)
 # target_link_libraries(${PROJECT_NAME} ${Vulkan_LIBRARIES})
 
+find_package(SDL2 REQUIRED)
+find_package(OpenAL REQUIRED)
+
 target_include_directories(${PROJECT_NAME} PUBLIC 
-    "${CMAKE_CURRENT_SOURCE_DIR}/include")
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${SDL2_INCLUDE_DIRS}"
+    "${OPENAL_INCLUDE_DIR}")
 
 # link lib path
 # link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib/vulkan")
@@ -45,6 +52,8 @@ if (LINUX)
 
     target_link_libraries(${PROJECT_NAME} PRIVATE glfw
         "${LIB_IRRKLANG}"
+        "${SDL2_LIBRARIES}"
+        "${OPENAL_LIBRARY}"
         #"${CMAKE_CURRENT_SOURCE_DIR}/lib/libglfw3.a"
         #"${CMAKE_CURRENT_SOURCE_DIR}/lib/libfreetype.a")
          )
@@ -53,13 +62,15 @@ else()
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw3.lib" 
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/freetype.lib"
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/irrKlang.lib"
+        "${SDL2_LIBRARIES}"
+        "${OPENAL_LIBRARY}"
         #"${Vulkan_LIBRARIES}"
         # "${VLK}"
         opengl32.lib)
 endif()
 
 # set c++ standard
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # add compiler flags
 if(LINUX)

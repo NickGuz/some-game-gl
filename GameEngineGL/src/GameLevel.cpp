@@ -2,7 +2,7 @@
 #include "logger.h"
 //#include "SoundEngine.hpp"
 
-GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, SoundEngine* sound_eng) 
+GameLevel::GameLevel(CharacterObject* player, FontRenderer* font_renderer, unsigned int level_width, unsigned int level_height, SoundEngineSDL* sound_eng) 
     : player(player), font_renderer(font_renderer), level_width(level_width), level_height(level_height), sound_engine(sound_eng), completed(false), end_timer_active(false) {
     player_start_pos = player->position;
     sound = nullptr;

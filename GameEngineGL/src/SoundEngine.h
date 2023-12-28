@@ -4,14 +4,14 @@
 #include <unordered_map>
 #include <string>
 
-class SoundEngine 
+class SoundEngineSDL
 {
 public:
-	SoundEngine() {
+	SoundEngineSDL() {
         sound_engine = irrklang::createIrrKlangDevice();
     }
 
-	~SoundEngine() {}
+	~SoundEngineSDL() {}
 
     void set_volume(float volume) {
         sound_engine->setSoundVolume(volume);

@@ -11,11 +11,14 @@ if [[ ! -f "$original_directory/build/CMakeCache.txt" ]]; then
         exit 1
     fi
 
-    cmake ..
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
     cd $original_directory
     cp lib/ikpMP3.so .
     exit 0
 fi
 
+cd build
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
+cd $original_directory
 cmake --build build/
 cp lib/ikpMP3.so .

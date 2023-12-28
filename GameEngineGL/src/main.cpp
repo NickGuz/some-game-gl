@@ -14,7 +14,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 const unsigned int SCREEN_WIDTH = 1600;
 const unsigned int SCREEN_HEIGHT = 900;
 
-Game game(SCREEN_WIDTH, SCREEN_HEIGHT);
+/* Game game(SCREEN_WIDTH, SCREEN_HEIGHT); */
+Game *game;
 
 int main(int argc, char* argv[]) {
 	glfwInit();
@@ -29,7 +30,8 @@ int main(int argc, char* argv[]) {
 
 	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "SomeGame", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
-	game.window = window;
+    game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->window = window;
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
@@ -49,7 +51,7 @@ int main(int argc, char* argv[]) {
 
 	// initialize game
 	// ---------------
-	game.init();
+	game->init();
 
 	// deltaT variables
 	// ----------------
@@ -66,21 +68,29 @@ int main(int argc, char* argv[]) {
 		glfwPollEvents();
 
 		// manage user input
-		game.processInput(deltaT);
+		game->processInput(deltaT);
+
+        if (game->closing) {
+            /* game.~Game(); */
+            delete game;
+            glfwSetWindowShouldClose(window, true);
+            break;
+        }
 
 		// update game state
-		game.update(deltaT);
+		game->update(deltaT);
 
 		// render
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		game.render();
+		game->render();
 
 		glfwSwapBuffers(window);
 	}
 
 	// delete all resources as loaded using the resource manager
 	ResourceManager::clear();
+    /* game.~Game(); */
 
 	glfwTerminate();
 	return 0;
@@ -89,13 +99,13 @@ int main(int argc, char* argv[]) {
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {
 	// when a user presses the escape key, we set the WindowShouldClose property to true
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+		/* glfwSetWindowShouldClose(window, true); */
 
 	if (key >= 0 && key < 1024) {
 		if (action == GLFW_PRESS)
-			game.keys[key] = true;
+			game->keys[key] = true;
 		else if (action == GLFW_RELEASE)
-			game.keys[key] = false;
+			game->keys[key] = false;
 	}
 }
 

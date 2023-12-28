@@ -1,4 +1,5 @@
 #include "SpriteRenderer.h"
+#include "logger.h"
 
 SpriteRenderer::SpriteRenderer(Shader& shader) {
 	this->shader = shader;
@@ -6,7 +7,10 @@ SpriteRenderer::SpriteRenderer(Shader& shader) {
 }
 
 SpriteRenderer::~SpriteRenderer() {
+    log_info("Deleting spriterenderer");
+    log_info("quadVAO: " + std::to_string(this->quadVAO));
 	glDeleteVertexArrays(1, &this->quadVAO);
+    log_info("Deleted spriterenderer");
 }
 
 /* void SpriteRenderer::draw_sprite(Texture2D& texture, glm::vec2 position, */

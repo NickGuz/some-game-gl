@@ -2,7 +2,8 @@
 #include "SpriteRenderer.h"
 #include "Camera2D.h"
 #include "logger.h"
-#include "SoundEngine.h"
+/* #include "SoundEngine.h" */
+#include "SoundEngineSDL.h"
 
 SpriteRenderer *renderer;
 CharacterObject *player;
@@ -10,7 +11,7 @@ Camera2D *camera;
 FontRenderer *font_renderer;
 SpriteRenderer *shader_renderer;
 MenuScreen *title_screen;
-SoundEngine *sound_engine;
+SoundEngineSDL *sound_engine;
 
 Game::Game(unsigned int width, unsigned int height)
 	: width(width), height(height), state(GAME_MENU), keys()
@@ -25,6 +26,7 @@ Game::~Game() {
     delete camera;
     delete font_renderer;
     delete title_screen;
+    delete sound_engine;
 }
 
 void Game::init() {
@@ -76,7 +78,7 @@ void Game::init() {
     title_screen = new MenuScreen(font_renderer, width, height);
 
     // init sound
-    sound_engine = new SoundEngine();
+    sound_engine = new SoundEngineSDL();
 
     // load levels
     GameLevel one(player, font_renderer, width, height, sound_engine); one.load("levels/lvl1.json");
@@ -94,7 +96,8 @@ void Game::init() {
 
     // play music
     sound_engine->set_volume(0.0f);
-    sound_engine->play_sound("audio/breakout.mp3", true);
+    /* sound_engine->play_sound("audio/breakout.mp3", true); */
+    sound_engine->play_sound_stream("audio/breakout_aud.wav", true);
 }
 
 void Game::update(float deltaT) {
@@ -190,6 +193,10 @@ void Game::processInput(float deltaT) {
             /* title_screen->end(); */
             log_info("Space");
             state = GAME_ACTIVE;
+        }
+        if (keys[GLFW_KEY_ESCAPE]) {
+            /* glfwSetWindowShouldClose(window, true); */
+            closing = true;
         }
         break;
     }
