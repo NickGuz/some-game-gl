@@ -11,23 +11,29 @@ SoundEngineSDL::SoundEngineSDL() {
 
     ALCcontext *context = alcCreateContext(device, nullptr);
     alcMakeContextCurrent(context);
+
+    volume = 1.0f;
 }
 
 SoundEngineSDL::~SoundEngineSDL() {
-    log_info("here1");
     this->cleanup();
-    log_info("here2");
 
     for (std::thread &t : threads) {
         if (t.joinable()) {
             t.join();
         }
     }
-    log_info("here3");
 }
 
 void SoundEngineSDL::set_volume(float volume) {
+    // set global volume
+    this->volume = volume;
 
+    // set volume for existing sources
+    for (auto &it : sources) {
+        ALuint source = it.second;
+        alSourcef(source, AL_GAIN, volume);
+    }
 }
 
 // TODO possibly keep map of SDL_AudioSpecs?
@@ -41,24 +47,9 @@ void SoundEngineSDL::play_sound(const char* filename, bool loop) {
     std::uint8_t channels;
     std::int32_t sample_rate;
     std::uint8_t bits_per_sample;
-    /* std::vector<char> sound_data; */
     ALsizei size;
     char *sound_data;
     sound_data = load_wav(filename, channels, sample_rate, bits_per_sample, size);
-
-    /* FILE *file = fopen(filename, "rb"); */
-    /* if (!file) { */
-    /*     log_error("Failed to open file: " + std::string(filename)); */
-    /*     return; */
-    /* } */
-
-    /* fseek(file, 0, SEEK_END); */
-    /* size = ftell(file) - 44; */
-    /* fseek(file, 44, SEEK_SET); */
-
-    /* data = malloc(size); */
-    /* fread(data, 1, size, file); */
-    /* fclose(file); */
 
     ALenum format;
     if (channels == 1 && bits_per_sample == 8) {
@@ -79,7 +70,7 @@ void SoundEngineSDL::play_sound(const char* filename, bool loop) {
 
     // Attach the buffer to the source
     alSourcef(source, AL_PITCH, 1);
-    alSourcef(source, AL_GAIN, 0.5f);
+    alSourcef(source, AL_GAIN, this->volume);
     alSource3f(source, AL_POSITION, 0, 0, 0);
     alSource3f(source, AL_VELOCITY, 0, 0, 0);
     alSourcei(source, AL_LOOPING, AL_FALSE);
@@ -87,17 +78,6 @@ void SoundEngineSDL::play_sound(const char* filename, bool loop) {
 
     // Play the audio
     alSourcePlay(source);
-
-/*     ALint source_state; */
-/*     alGetSourcei(source, AL_SOURCE_STATE, &source_state); */
-
-/*     while (source_state == AL_PLAYING) { */
-/*         alGetSourcei(source, AL_SOURCE_STATE, &source_state); */
-/*     } */
-
-/*     // cleanup */
-/*     alDeleteSources(1, &source); */
-/*     alDeleteBuffers(1, &buffer); */
 
     sources[filename] = source;
     buffers[filename] = buffer;
@@ -146,7 +126,7 @@ void SoundEngineSDL::_play_sound_stream(const char *filename, bool loop) {
     ALuint source;
     alGenSources(1, &source);
     alSourcef(source, AL_PITCH, 1);
-    alSourcef(source, AL_GAIN, 0.5f);
+    alSourcef(source, AL_GAIN, this->volume);
     alSource3f(source, AL_POSITION, 0, 0, 0);
     alSource3f(source, AL_VELOCITY, 0, 0, 0);
     alSourcei(source, AL_LOOPING, AL_FALSE);
@@ -190,53 +170,13 @@ void SoundEngineSDL::play_if_not_already(const char* filename, bool loop) {
     if (sources.find(filename) != sources.end()) {
         ALint source_state;
         alGetSourcei(sources[filename], AL_SOURCE_STATE, &source_state);
-        if (source_state == AL_PLAYING) {
-            return;
+        if (source_state != AL_PLAYING) {
+            alSourcePlay(sources[filename]);
         }
-    }
-
-    // Generate an OpenAL buffer and source
-    ALuint buffer, source;
-    alGenBuffers(1, &buffer);
-    alGenSources(1, &source);
-
-    // Read audio data from file and fill the buffer
-    std::uint8_t channels;
-    std::int32_t sample_rate;
-    std::uint8_t bits_per_sample;
-    ALsizei size;
-    char *sound_data;
-    sound_data = load_wav(filename, channels, sample_rate, bits_per_sample, size);
-
-    ALenum format;
-    if (channels == 1 && bits_per_sample == 8) {
-        format = AL_FORMAT_MONO8;
-    } else if (channels == 1 && bits_per_sample == 16) {
-        format = AL_FORMAT_MONO16;
-    } else if (channels == 2 && bits_per_sample == 8) {
-        format = AL_FORMAT_STEREO8;
-    } else if (channels == 2 && bits_per_sample == 16) {
-        format = AL_FORMAT_STEREO16;
-    } else {
-        log_error("Unrecognized wave format");
         return;
     }
 
-    alBufferData(buffer, format, sound_data, size, sample_rate); // Adjust the format and frequency as needed
-    /* free(sound_data); */
-
-    // Attach the buffer to the source
-    alSourcef(source, AL_PITCH, 1);
-    alSourcef(source, AL_GAIN, 0.5f);
-    alSource3f(source, AL_POSITION, 0, 0, 0);
-    alSource3f(source, AL_VELOCITY, 0, 0, 0);
-    alSourcei(source, AL_LOOPING, AL_TRUE);
-    alSourcei(source, AL_BUFFER, buffer);
-
-    // Play the audio
-    alSourcePlay(source);
-    sources[filename] = source;
-    buffers[filename] = buffer;
+    play_sound(filename, loop);
 }
 
 void SoundEngineSDL::update_stream(const ALuint source,
@@ -281,44 +221,6 @@ void SoundEngineSDL::update_stream(const ALuint source,
         delete[] data;
     }
 }
-
-/* void SoundEngineSDL::play_if_not_already(const char* filename, bool loop) { */
-/*     // Generate an OpenAL buffer and source */
-/*     ALuint buffer, source; */
-/*     alGenBuffers(1, &buffer); */
-/*     alGenSources(1, &source); */
-
-/*     // Read audio data from file and fill the buffer */
-/*     ALenum format; */
-/*     ALsizei freq; */
-/*     ALsizei size; */
-/*     ALvoid *data; */
-/*     ALboolean al_loop = AL_FALSE; */
-
-/*     FILE *file = fopen(filename, "rb"); */
-/*     if (!file) { */
-/*         log_error("Failed to open file: " + std::string(filename)); */
-/*         return; */
-/*     } */
-
-/*     fseek(file, 0, SEEK_END); */
-/*     size = ftell(file); */
-/*     fseek(file, 0, SEEK_SET); */
-
-/*     data = malloc(size); */
-/*     fread(data, 1, size, file); */
-/*     fclose(file); */
-
-/*     alBufferData(buffer, AL_FORMAT_MONO16, data, size, 44100); // Adjust the format and frequency as needed */
-/*     free(data); */
-
-/*     // Attach the buffer to the source */
-/*     alSourcei(source, AL_BUFFER, buffer); */
-/*     alSourcei(source, AL_LOOPING, al_loop); */
-
-/*     // Play the audio */
-/*     alSourcePlay(source); */
-/* } */
 
 std::int32_t SoundEngineSDL::convert_to_int(char *buffer, std::size_t len) {
     std::int32_t a = 0;

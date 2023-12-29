@@ -95,7 +95,7 @@ void Game::init() {
     //receiver.subscribe("LEVEL_END");
 
     // play music
-    sound_engine->set_volume(0.0f);
+    sound_engine->set_volume(0.5f);
     /* sound_engine->play_sound("audio/breakout.mp3", true); */
     sound_engine->play_sound_stream("audio/breakout_aud.wav", true);
 }
@@ -110,14 +110,14 @@ void Game::update(float deltaT) {
         // update the level? 
         levels[level].update(deltaT);
         if (levels[level].is_completed()) {
-            log_info("Level completed");
+            log_info("Level " + std::to_string(level) + " completed");
             /* sound_engine->play2D("audio/finish.wav"); */
             sound_engine->play_sound("audio/finish.wav");
             level++;
             if (level >= levels.size()) {
                 state = GAME_MENU;
                 level = 0;
-                reset_level();
+                reset_all_levels();
             }
         }
         camera->update(deltaT);
@@ -156,6 +156,11 @@ void Game::reset_level() {
 	/* 	levels[3].load("levels/four.lvl", width, height); */
 }
 
+void Game::reset_all_levels() {
+    levels[0].load("levels/lvl1.json");
+    levels[1].load("levels/lvl2.json");
+}
+
 void Game::reset_player() {
 	// reset player/ball stats
 	player->size = PLAYER_SIZE;
@@ -191,17 +196,17 @@ void Game::processInput(float deltaT) {
     case GAME_MENU: {
         if (keys[GLFW_KEY_SPACE]) {
             /* title_screen->end(); */
-            log_info("Space");
             state = GAME_ACTIVE;
-        }
-        if (keys[GLFW_KEY_ESCAPE]) {
-            /* glfwSetWindowShouldClose(window, true); */
-            closing = true;
         }
         break;
     }
     case GAME_WIN:
         break;
+    }
+
+    if (keys[GLFW_KEY_ESCAPE]) {
+        /* glfwSetWindowShouldClose(window, true); */
+        closing = true;
     }
 }
 

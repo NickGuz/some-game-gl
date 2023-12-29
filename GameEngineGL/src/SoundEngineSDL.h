@@ -67,6 +67,8 @@ public:
     void cleanup();
 
 private:
+    float volume;
+
     void update_stream(const ALuint source,
                        const ALenum &format,
                        const std::int32_t &sample_rate,
@@ -88,7 +90,6 @@ private:
                    std::uint8_t &bits_per_sample,
                    ALsizei &size);
 
-    /* std::unordered_map<const char*, irrklang::ISoundSource*> sounds; */
     std::unordered_map<std::string, ALuint> sources;
     std::unordered_map<std::string, ALuint> buffers;
     std::vector<std::thread> threads;

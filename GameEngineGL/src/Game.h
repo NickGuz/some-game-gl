@@ -60,6 +60,7 @@ public:
 	void render();
 
 	void reset_level();
+    void reset_all_levels();
 	void reset_player();
 
 private:

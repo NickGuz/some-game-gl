@@ -139,6 +139,7 @@ void GameLevel::load(const char* file) {
     // init some variables on a reset
     end_time = 0.0f;
     end_timer_active = false;
+    log_info("Set complete = false");
     completed = false;
     bricks.clear();
     movable_bricks.clear();
